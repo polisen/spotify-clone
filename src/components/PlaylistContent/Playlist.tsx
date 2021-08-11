@@ -14,7 +14,7 @@ const TrackLayout = styled.div`
 
 export const Track = ({ index }: any) => {
   const items = [
-    { key: "n", text: index, width: "5%", alignment: "center" },
+    { key: "n", text: index, width: "5%", alignment: "center",  secondaryColor: true  },
     {
       key: "title",
       text: "Track Title",

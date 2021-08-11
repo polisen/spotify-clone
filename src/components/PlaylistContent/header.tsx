@@ -8,6 +8,7 @@ const HeaderLayout = styled.div`
   border-bottom-style: solid;
   display: flex;
   align-items: center;
+  margin-bottom: 3px;
 `;
 
 interface HeaderItem {
