@@ -5,6 +5,10 @@ import styled from "styled-components";
 const TrackLayout = styled.div`
   display: flex;
   height: 3em;
+  :hover {
+    background-color: #444444;
+  }
+  cursor: pointer;
 `;
 
 export const Track = ({ index }: any) => {

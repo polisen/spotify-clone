@@ -2,6 +2,7 @@ import styled from "styled-components";
 import {HeaderText} from './HeaderText'
 import {PlaylistImage} from './HeaderImage';
 
+
 const HeaderContainer = styled.div`
   width: 100%;
   height: 30%;

@@ -10,16 +10,20 @@ const ControlsLayout = styled.div`
   align-items: center;
 `;
 
+const GreenButton = styled.div`
+  cursor: pointer;
+`
+
 const Button = () => {
   const [state, setState] = useState(false);
   return (
-    <div role="button" onClick={() => setState(!state)}>
+    <GreenButton role="button" onClick={() => setState(!state)}>
       {state ? (
         <PlayButton role="playbutton" />
       ) : (
         <PauseButton role="pausebutton" />
       )}
-    </div>
+    </GreenButton>
   );
 };
 
