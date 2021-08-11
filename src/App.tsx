@@ -14,7 +14,7 @@ function App() {
 const ControlBarLayout = styled.div`
   margin-top: 1rem;
   padding: 1rem;
-  background-color: #444444;
+  background-color: #181818;
   position: fixed;
   height: 3em;
   bottom: 0;
