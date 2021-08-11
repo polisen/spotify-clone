@@ -31,12 +31,18 @@ export const Track = ({ index }: any) => {
   );
 };
 
+const PlaylistBox = styled.div`
+    /* overflow: scroll; */
+    height: calc(100% - 3em);
+    width: 100%;
+`
+
 export const Playlist = () => {
   return (
-    <>
-      {new Array(1).fill(true).map((e, index) => (
+    <PlaylistBox>
+      {new Array(50).fill(true).map((e, index) => (
         <Track index={index + 1} />
       ))}
-    </>
+    </PlaylistBox>
   );
 };

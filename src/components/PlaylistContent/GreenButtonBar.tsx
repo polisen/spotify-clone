@@ -5,7 +5,7 @@ import { ReactComponent as PauseButton } from "../../svg/pause.svg";
 
 const ControlsLayout = styled.div`
   width: 100%;
-  height: 6em;
+  height: 5em;
   display: flex;
   align-items: center;
 `;
@@ -13,8 +13,12 @@ const ControlsLayout = styled.div`
 const Button = () => {
   const [state, setState] = useState(false);
   return (
-    <div onClick={() => setState(!state)}>
-      {state ? <PauseButton /> : <PlayButton />}
+    <div role="button" onClick={() => setState(!state)}>
+      {state ? (
+        <PlayButton role="playbutton" />
+      ) : (
+        <PauseButton role="pausebutton" />
+      )}
     </div>
   );
 };
