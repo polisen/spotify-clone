@@ -27,6 +27,7 @@ const Text = styled.p`
   font-weight: bold;
   color: #b3b3b3;
   margin: 0;
+  overflow: hidden;
   margin-left: ${({inset}: any) => inset ? '.5em' : '0'};
 `;
 
@@ -98,7 +99,7 @@ const SideBar = () => {
         })}
         <Divider />
         {playlists.map((text) => {
-          return <PlaylistItem text={text} />;
+          return <PlaylistItem key={text} text={text} />;
         })}
       </Margins>
     </SidebarLayout>

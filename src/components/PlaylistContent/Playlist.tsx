@@ -9,6 +9,7 @@ const TrackLayout = styled.div`
     background-color: #444444;
   }
   cursor: pointer;
+  border-radius: 4px;
 `;
 
 export const Track = ({ index }: any) => {
@@ -22,9 +23,9 @@ export const Track = ({ index }: any) => {
       alignment: "start",
       image: Rectangle,
     },
-    { key: "album", text: "Album", width: "25%", alignment: "start" },
-    { key: "dateAdded", text: "2021-08-11", width: "25%", alignment: "start" },
-    { key: "time", text: "7:14", width: "10%", alignment: "center" },
+    { key: "album", text: "Album", width: "25%", alignment: "start", secondaryColor: true },
+    { key: "dateAdded", text: "2021-08-11", width: "25%", alignment: "start", secondaryColor: true },
+    { key: "time", text: "7:14", width: "10%", alignment: "center", secondaryColor: true },
   ];
   return (
     <TrackLayout>
@@ -45,7 +46,7 @@ export const Playlist = () => {
   return (
     <PlaylistBox>
       {new Array(50).fill(true).map((e, index) => (
-        <Track index={index + 1} />
+        <Track key={index} index={index + 1} />
       ))}
     </PlaylistBox>
   );

@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { ReactComponent as Clock } from "../../svg/Clock.svg";
 import { Item } from "./TableItem";
 import { ReactNode } from "react";
-import { Sticky } from "react-sticky";
 
 const HeaderLayout = styled.div`
   border: 1px #444444;
