@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import Text from '../../components/Text'
 const ItemContainer = styled.div`
   width: ${({ width }: any) => width};
   display: flex;
@@ -12,15 +12,6 @@ const ItemLayout = styled.div`
   display: inline-flex;
   align-items: center;
 `;
-
-const ItemText = styled.p`
-  font-family: montserrat;
-  font-weight: bold;
-  color: ${({ secondaryColor }: any) =>
-    secondaryColor ? "#b3b3b3" : "#ffffff"};
-  margin: 0;
-`;
-
 
 const AlbumArt = styled.img`
 margin: 5px;
@@ -41,9 +32,9 @@ export const Item = ({
       <ItemLayout>
         {image && <AlbumArt src={image} />}
         <div>
-          {icon ? icon : <ItemText {...{ secondaryColor }}>{text}</ItemText>}
+          {icon ? icon : (secondaryColor ? <Text.Dimmed>{text}</Text.Dimmed> : <Text>{text}</Text>)}
           {secondaryText && (
-            <ItemText {...{ secondaryColor: true }}>{secondaryText}</ItemText>
+            <Text.Dimmed>{secondaryText}</Text.Dimmed>
           )}
         </div>
       </ItemLayout>

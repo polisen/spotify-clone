@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import {MainContent} from './components/MainContent'
-import Controls from './components/ControlBar'
+import {MainContent} from './features/MainContent'
+import Controls from './features/ControlBar'
 function App() {
   return (
     <>

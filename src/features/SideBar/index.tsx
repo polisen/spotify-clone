@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { Resizable } from "re-resizable";
 import GithubIcon from "../../svg/github.svg";
 import StorybookIcon from "../../svg/storybook.svg";
+import Text from 'components/Text'
 
 const SidebarLayout = styled(Resizable)`
   width: 30%;
@@ -22,15 +23,6 @@ const SidebarLayoutProps = {
   minWidth: "15%",
 };
 
-const Text = styled.p`
-  font-family: montserrat;
-  font-weight: bold;
-  color: #b3b3b3;
-  margin: 0;
-  overflow: hidden;
-  margin-left: ${({inset}: any) => inset ? '.5em' : '0'};
-`;
-
 const MenuItemContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -38,10 +30,13 @@ const MenuItemContainer = styled.div`
   width: 100%;
   margin-top: 1em;
   cursor: pointer;
-  :hover ${Text} {
+`;
+
+const SideBarText = styled(Text.Dimmed)`
+  :hover {
     color: white;
   }
-`;
+`
 
 const Icon = styled.img`
   width: 2em;
@@ -54,7 +49,7 @@ const Icon = styled.img`
 const MenuItem = ({ text, icon }: any) => (
   <MenuItemContainer>
     <Icon src={icon} />
-    <Text>{text}</Text>
+    <SideBarText>{text}</SideBarText>
   </MenuItemContainer>
 );
 
@@ -69,7 +64,7 @@ const Divider = styled.hr`
 const PlaylistItem = ({ text }: any) => {
   return (
     <MenuItemContainer>
-      <Text {...{inset:true}}>{text}</Text>
+      <SideBarText {...{inset:true}}>{text}</SideBarText>
     </MenuItemContainer>
   );
 };

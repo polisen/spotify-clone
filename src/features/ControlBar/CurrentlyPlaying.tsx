@@ -1,7 +1,7 @@
 import { Container } from "./components";
 import Rectangle from "../../svg/Rectangle.svg";
 import styled from "styled-components";
-
+import Text from 'components/Text'
 const Image = styled.img`
   width: calc(5em - 20px);
   height: calc(5em - 20px);
@@ -15,31 +15,14 @@ const AlbumImage = ({ src }: any) => {
   );
 };
 
-const Text = styled.p`
-  font-family: montserrat;
-  font-weight: bold;
-  color: white;
-  margin: 0;
-  /* overflow: hidden; */
-  margin-left: ${({ inset }: any) => (inset ? ".5em" : "0")};
-`;
 
 
-const Artist = styled.p`
-  font-family: montserrat;
-  font-weight: bold;
-  color: #b3b3b3;
-  font-size: 11px;
-  margin: 3px;
-  /* overflow: hidden; */
-  margin-left: ${({ inset }: any) => (inset ? ".5em" : "0")};
-`;
+
 const TrackInfo = ({ artist, title }: any) => {
   return (
     <div style={{padding: '5px'}}>
         <Text>{title}</Text>
-      <Artist>{artist}</Artist>
-
+      <Text.Dimmed>{artist}</Text.Dimmed>
     </div>
   );
 };
