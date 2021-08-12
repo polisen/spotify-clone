@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { Resizable } from "re-resizable";
-import GithubIcon from "../../svg/github.svg";
-import StorybookIcon from "../../svg/storybook.svg";
+import {Github, StorybookLogo} from "svg";
 import Text from 'components/Text'
 
 const SidebarLayout = styled(Resizable)`
@@ -23,6 +22,8 @@ const SidebarLayoutProps = {
   minWidth: "15%",
 };
 
+
+
 const MenuItemContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -30,26 +31,29 @@ const MenuItemContainer = styled.div`
   width: 100%;
   margin-top: 1em;
   cursor: pointer;
-`;
-
-const SideBarText = styled(Text.Dimmed)`
-  :hover {
+  :hover ${Text.Dimmed}{
     color: white;
   }
-`
+`;
 
-const Icon = styled.img`
+
+const GithubIcon = styled(Github)`
   width: 2em;
   margin: 5px;
   height: 2em;
 `;
+const StorybookIcon = styled(StorybookLogo)`
+  width: 2em;
+  margin: 5px;
+  height: 2em;
+`
 
 
 
 const MenuItem = ({ text, icon }: any) => (
   <MenuItemContainer>
-    <Icon src={icon} />
-    <SideBarText>{text}</SideBarText>
+    {icon}
+    <Text.Dimmed>{text}</Text.Dimmed>
   </MenuItemContainer>
 );
 
@@ -64,7 +68,7 @@ const Divider = styled.hr`
 const PlaylistItem = ({ text }: any) => {
   return (
     <MenuItemContainer>
-      <SideBarText {...{inset:true}}>{text}</SideBarText>
+      <Text.Dimmed {...{inset:true}}>{text}</Text.Dimmed>
     </MenuItemContainer>
   );
 };
@@ -77,11 +81,11 @@ const SideBar = () => {
   const items = {
     github: {
       text: "polisen/spotify-clone",
-      icon: GithubIcon,
+      icon: <GithubIcon/>,
     },
     storybook: {
       text: "Storybook",
-      icon: StorybookIcon,
+      icon: <StorybookIcon/>,
     },
   };
   const playlists = ["Playlist 1", "Playlist 2"];

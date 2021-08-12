@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
-import { ReactComponent as PlayButton } from "../../svg/play.svg";
-import { ReactComponent as PauseButton } from "../../svg/pause.svg";
+import {GreenPlay, GreenPause} from "svg";
+
 
 const ControlsLayout = styled.div`
   width: 100%;
@@ -19,9 +19,9 @@ const Button = () => {
   return (
     <GreenButton role="button" onClick={() => setState(!state)}>
       {state ? (
-        <PlayButton role="playbutton" />
+        <GreenPlay role="playbutton" />
       ) : (
-        <PauseButton role="pausebutton" />
+        <GreenPause role="pausebutton" />
       )}
     </GreenButton>
   );
