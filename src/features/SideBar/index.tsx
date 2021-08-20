@@ -2,6 +2,9 @@ import styled from "styled-components";
 import { Resizable } from "re-resizable";
 import {Github, StorybookLogo} from "svg";
 import Text from 'components/Text'
+import {useDispatch} from 'react-redux'
+import {setCurrentPlaylist} from 'slices/audioContextSlice'
+import { useState, useEffect } from 'react';
 
 const SidebarLayout = styled(Resizable)`
   width: 30%;
@@ -65,10 +68,10 @@ const Divider = styled.hr`
   margin: ${({ sm }: any) => (sm ? "1em 0 1em 0" : "2em 0 2em 0")};
 `;
 
-const PlaylistItem = ({ text }: any) => {
+const PlaylistItem = ({ text, slug, setPlaylist }: any) => {
   return (
-    <MenuItemContainer>
-      <Text.Dimmed {...{inset:true}}>{text}</Text.Dimmed>
+    <MenuItemContainer onClick={() => setPlaylist(slug)}>
+      <Text.Dimmed >{text}</Text.Dimmed>
     </MenuItemContainer>
   );
 };
@@ -78,6 +81,7 @@ const Margins = styled.div`
 `;
 
 const SideBar = () => {
+  const dispatch = useDispatch()
   const items = {
     github: {
       text: "polisen/spotify-clone",
@@ -88,7 +92,16 @@ const SideBar = () => {
       icon: <StorybookIcon/>,
     },
   };
-  const playlists = ["Playlist 1", "Playlist 2"];
+  const playlists = [{name: 'Playlist 1', slug: 'playlist1'}, {name: 'Playlist 2', slug: 'playlist2'}];
+  useEffect(() => {
+    dispatch(setCurrentPlaylist(playlists[0].slug))
+  }, []);
+
+  function handlePlaylistChange(slug: string){
+    dispatch(setCurrentPlaylist(slug))
+  }
+
+
   return (
     <SidebarLayout {...SidebarLayoutProps}>
       <Margins>
@@ -97,8 +110,8 @@ const SideBar = () => {
           return <MenuItem key={key} {...value} />;
         })}
         <Divider />
-        {playlists.map((text) => {
-          return <PlaylistItem key={text} text={text} />;
+        {playlists.map(({name, slug}) => {
+          return <PlaylistItem key={slug} text={name} slug={slug} setPlaylist={handlePlaylistChange}/>;
         })}
       </Margins>
     </SidebarLayout>

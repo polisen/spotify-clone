@@ -12,7 +12,7 @@ const initialState: any = {
   looping: false,
   currentlyPlaying: {},
   currentIndex: 0,
-  currentPlaylist: "",
+  currentPlaylist: "playlist1",
   playlists: {
     playlist1,
     playlist2,
@@ -32,17 +32,15 @@ export const audioContext = createSlice({
         if (state.playlists[state.currentPlaylist][index]) {
           state.currentlyPlaying =
             state.playlists[state.currentPlaylist][index];
-            state.currentIndex = index;
+            state.isPlaying = true;
         } else if (index < 0) {
           state.currentlyPlaying = initialState.currentlyPlaying;
-          state.currentIndex = undefined;
-        } else if (index > state.playlists[state.currentPlaylist].length) {
+        } else if (index > state.playlists[state.currentPlaylist].length - 1) {
           if (state.looping) {
             state.currentlyPlaying = state.playlists[state.currentPlaylist][0];
-            state.currentIndex = 0;
+            state.isPlaying = true;
           } else {
             state.currentlyPlaying = initialState.currentlyPlaying;
-            state.currentIndex = undefined;
           }
         }
       };
@@ -50,14 +48,18 @@ export const audioContext = createSlice({
       if (typeof action.payload === "number") {
         proposeTrackIndex(action.payload);
       } else if (action.payload === "increment") {
-        proposeTrackIndex(state.currentIndex + 1);
+        proposeTrackIndex(state.currentlyPlaying.index + 1);
       } else if (action.payload === "decrement") {
-        proposeTrackIndex(state.currentIndex - 1);
+        proposeTrackIndex(state.currentlyPlaying.index - 1);
       }
+    },
+    setCurrentPlaylist: (state, action: PayloadAction<string>) => {
+      state.currentPlaylist = action.payload;
     },
   },
 });
 
-export const { togglePlayState, setCurrentTrack } = audioContext.actions;
+export const { togglePlayState, setCurrentTrack, setCurrentPlaylist } =
+  audioContext.actions;
 
 export default audioContext.reducer;

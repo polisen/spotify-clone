@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { ReactComponent as Clock } from "../../svg/Clock.svg";
-import { Item } from "./TableItem";
+// import { Item } from "./TableItem";
 import { ReactNode } from "react";
-
+import {Track} from './TableItem';
 const HeaderLayout = styled.div`
   border: 1px #444444;
   border-bottom-style: solid;
@@ -11,12 +11,9 @@ const HeaderLayout = styled.div`
   margin-bottom: 3px;
 `;
 
-interface HeaderItem {
-  key: string;
+export interface HeaderItem {
+  slug: string;
   text?: string;
-  width: string;
-  alignment: "center" | "start";
-  secondaryColor: boolean;
   icon?: ReactNode;
 }
 
@@ -26,46 +23,31 @@ export const Header = () => {
    */
   const items: HeaderItem[] = [
     {
-      key: "n",
+      slug: "index",
       text: "#",
-      width: "5%",
-      alignment: "center",
-      secondaryColor: true,
     },
     {
-      key: "title",
+      slug: "title",
       text: "TITLE",
-      width: "35%",
-      alignment: "start",
-      secondaryColor: true,
     },
     {
-      key: "album",
+      slug: "album",
       text: "ALBUM",
-      width: "25%",
-      alignment: "start",
-      secondaryColor: true,
     },
     {
-      key: "dateAdded",
+      slug: "date",
       text: "DATE ADDED",
-      width: "25%",
-      alignment: "start",
-      secondaryColor: true,
     },
     {
-      key: "time",
       icon: <Clock />,
-      width: "10%",
-      alignment: "center",
-      secondaryColor: true,
+      slug: 'time'
     },
   ];
 
   return (
         <HeaderLayout>
           {items.map((i) => (
-            <Item {...i} />
+            <Track.HeaderText {...i} />
           ))}
         </HeaderLayout>
   );

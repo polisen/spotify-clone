@@ -1,5 +1,3 @@
-import {nanoid} from '@reduxjs/toolkit';
-
 const DS2Deluxe = {
   artist: "Future",
   album: "DS2 (Deluxe)",
@@ -10,6 +8,10 @@ const DS2Deluxe = {
       mediaLink:
         "https://firebasestorage.googleapis.com/v0/b/portfolio-spotify-clone.appspot.com/o/Future%20-%20DS2%20(Deluxe%20Edition)%2F01.%20Thought%20It%20Was%20A%20Drought.mp3?alt=media&token=aa0683a4-daec-45b3-a976-7fb0ccfe66ad",
     },
+    {
+        trackName: 'I Serve The Base',
+        mediaLink: 'https://firebasestorage.googleapis.com/v0/b/portfolio-spotify-clone.appspot.com/o/Future%20-%20DS2%20(Deluxe%20Edition)%2F02.%20I%20Serve%20The%20Base.mp3?alt=media&token=57a528ac-e1ea-4787-a4f6-a5c7127dd48d'
+    }
   ],
 };
 
@@ -42,7 +44,7 @@ const takeFromAlbum = (arr: number[], album: AlbumInfo): Array<object> => {
 
 
 export const playlist1 = [
-  ...takeFromAlbum([0], DS2Deluxe),
-]
+  ...takeFromAlbum([0,1], DS2Deluxe)
+].map((e,i) => {return {...e, index: i}})
 
 export const playlist2 = {};

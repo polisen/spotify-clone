@@ -6,18 +6,25 @@ import { Container } from "components/ControlBarContainer";
 const ButtonContainer = styled.div`
   width: 100%;
   display: flex;
-  height: 60%;
+  height: 20%;
   justify-content: center;
-  /* background-color: blue; */
+  align-items: center;
 `;
 
+const Previous = styled(SkipBack)`
+  width: 1em;
+`
 
+const Next = styled(SkipForward)`
+  width: 1em;
+`
 
 const ControlsContainer = styled(Container)`
     display: flex;
     justify-content: space-between;
-    width: 15%;
-    /* margin: 0 auto 15px; */
+    align-items: space-between;
+    min-width: 2em;
+    max-width: 6em;
 `
 
 const AudioControls = ({
@@ -27,11 +34,11 @@ const AudioControls = ({
   onNextClick,
 }: any) => (
   <ControlsContainer >
-    <SkipBack onClick={() => onPrevClick} />
+    <Previous onClick={() => onPrevClick} />
     <ButtonContainer onClick={() => onPlayPauseClick(!isPlaying)}>
       {isPlaying ? <PauseButton /> : <PlayButton />}
     </ButtonContainer>
-    <SkipForward />
+    <Next />
   </ControlsContainer>
 );
 

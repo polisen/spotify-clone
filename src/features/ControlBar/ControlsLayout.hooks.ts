@@ -6,7 +6,6 @@ export function useAudioPlayer() {
   const { isPlaying, currentlyPlaying } = useSelector(
     (state: any) => state.audio
   );
-  const [trackIndex, setTrackIndex] = useState(0);
   const [trackProgress, setTrackProgress] = useState(0);
   const [currentPercentage, setCurrentPercentage] = useState("");
   // Destructure for conciseness
@@ -15,19 +14,16 @@ export function useAudioPlayer() {
   const audioRef = useRef(new Audio(currentlyPlaying.mediaLink));
 
   let { ended, currentTime, play, pause, volume } = audioRef.current;
-  console.log(audioRef);
   const intervalRef: any = useRef();
   const isReady = useRef(false);
 
   // Destructure for conciseness
   const { duration } = audioRef.current;
-  // console.log(duration)
 
   useEffect(() => {
     setCurrentPercentage(
       duration ? `${(trackProgress / duration) * 100}%` : "0%"
     );
-    console.log(currentPercentage);
   }, [trackProgress]);
 
   const startTimer = () => {
@@ -37,7 +33,7 @@ export function useAudioPlayer() {
       if (audioRef.current.ended) {
         playNext();
       } else {
-        setTrackProgress(currentTime);
+        setTrackProgress(audioRef.current.currentTime);
       }
     }, 500);
   };
@@ -51,8 +47,8 @@ export function useAudioPlayer() {
   const onScrub = (value: any) => {
     // Clear any timers already running
     clearInterval(intervalRef.current);
-    currentTime = value;
-    setTrackProgress(currentTime);
+    audioRef.current.currentTime = value;
+    setTrackProgress(audioRef.current.currentTime);
   };
 
   const onScrubEnd = () => {
@@ -71,21 +67,20 @@ export function useAudioPlayer() {
     }
   }, [isPlaying]);
 
-  // Handles cleanup and setup when changing tracks
-  //   useEffect(() => {
-  //     pause();
+  useEffect(() => {
+    audioRef.current.pause();
 
-  //     audioRef.current = new Audio(audioSrc);
-  //     setTrackProgress(currentTime);
+    audioRef.current = new Audio(currentlyPlaying.mediaLink);
+    setTrackProgress(audioRef.current.currentTime);
 
-  //     if (isReady.current) {
-  //       play();
-  //       startTimer();
-  //     } else {
-  //       // Set the isReady ref as true for the next pass
-  //       isReady.current = true;
-  //     }
-  //   }, [trackIndex]);
+    if (isReady.current) {
+      audioRef.current.play();
+      startTimer();
+    } else {
+      // Set the isReady ref as true for the next pass
+      isReady.current = true;
+    }
+  }, [currentlyPlaying]);
 
   useEffect(() => {
     // Pause and clean up on unmount
@@ -97,12 +92,15 @@ export function useAudioPlayer() {
 
   return {
     isPlaying,
-    progress: {percentage: currentPercentage, trackProgress},
+    currentPercentage,
+    trackProgress,
     volume,
+    duration,
+    onScrub,
     setVolume,
     playNext,
     playPrevious,
     togglePlaying,
-    currentPercentage,
+    onScrubEnd,
   };
 }
