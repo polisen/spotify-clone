@@ -1,7 +1,8 @@
-import styled from 'styled-components';
-import CurrentlyPlaying from './CurrentlyPlaying';
-import Controls from './Controls'
-import Volume from './Volume'
+import styled from "styled-components";
+import CurrentlyPlaying from "./CurrentlyPlaying";
+import Controls from "./ControlsLayout";
+import Volume from "./Volume";
+
 const ControlBarLayout = styled.div`
   background-color: #181818;
   position: fixed;
@@ -14,11 +15,13 @@ const ControlBarLayout = styled.div`
 `;
 
 const ControlBar = () => {
-  return <ControlBarLayout>
-      <CurrentlyPlaying/>
-      <Controls/>
-      <Volume/>
-  </ControlBarLayout>;
+  return (
+    <ControlBarLayout>
+      <CurrentlyPlaying />
+      <Controls />
+      <Volume />
+    </ControlBarLayout>
+  );
 };
 
 export default ControlBar;

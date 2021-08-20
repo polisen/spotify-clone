@@ -1,4 +1,5 @@
-import { Container } from "./components";
+import { Container } from "components/ControlBarContainer";
+
 import styled from "styled-components";
 import { ReactComponent as Volume } from "../../svg/Volume.svg";
 const VolumeContainer = styled(Container)`

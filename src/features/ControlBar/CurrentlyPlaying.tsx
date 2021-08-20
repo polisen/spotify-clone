@@ -1,4 +1,4 @@
-import { Container } from "./components";
+import { Container } from "components/ControlBarContainer";
 import Rectangle from "../../svg/Rectangle.svg";
 import styled from "styled-components";
 import Text from 'components/Text'

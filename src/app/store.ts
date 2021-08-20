@@ -1,7 +1,9 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
+import audioContextSlice from 'slices/audioContextSlice';
 
 export const store = configureStore({
   reducer: {
+    audio: audioContextSlice,
   },
 });
 
