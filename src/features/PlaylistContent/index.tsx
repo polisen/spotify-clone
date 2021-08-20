@@ -10,6 +10,7 @@ const ContentLayout = styled.div`
   flex: 1;
   min-height: 0;
 `;
+
 const PlaylistContentLayout = styled.div`
   width: 100%;
   height: 100%;
