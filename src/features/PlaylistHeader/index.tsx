@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import {HeaderText} from './HeaderText'
 import {PlaylistImage} from './HeaderImage';
-
+import {useSelector} from 'react-redux'
 
 const HeaderContainer = styled.div`
   width: 100%;
@@ -16,11 +16,14 @@ height: 100%;
 `
 
 const PlaylistHeader = () => {
+  const currentPlaylist = useSelector((state: any) => state.audio.currentPlaylist)
+  const {name, coverArt} = useSelector((state: any) => state.audio.playlists[currentPlaylist])
+  console.log(name, coverArt)
   return (
     <HeaderContainer>
       <HeaderLayout>
-        <PlaylistImage />
-        <HeaderText/>
+        {coverArt[0] && <PlaylistImage coverArt={coverArt}/>}
+        <HeaderText text={name}/>
       </HeaderLayout>
     </HeaderContainer>
   );

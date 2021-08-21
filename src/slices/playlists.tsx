@@ -42,19 +42,40 @@ const takeFromAlbum = (arr: number[], album: AlbumInfo): Array<object> => {
   return resultArray;
 };
 
+
+const getCoverArt = function getPlaylistCoverArtAssortment(arr: any): string[]{
+  let uniqueCovers = [...new Set(arr.map(([tracks, album]: any) => (album.coverArt)))]
+  let randomSelection: any = uniqueCovers.sort(() => 0.5 - Math.random()).slice(0, (uniqueCovers.length > 4 ? 4 : getEven(uniqueCovers.length)));
+  return randomSelection;
+
+}
+
+const getEven = (num: number): number => {
+if (num === 1) return num
+if (num % 4 === 0) return num;
+else return 1
+}
+
+
+let pl1 = [[[1,0], DS2Deluxe], [[0,1], DS2Deluxe]]
+let pl2 = [[[1,0], DS2Deluxe],]
+
 const playlist1 = {
-  tracks: [...takeFromAlbum([0, 1], DS2Deluxe)].map((e, i) => {
+  tracks: pl1.map(([tracks, album]: any) => (takeFromAlbum(tracks, album))).flat().map((e, i) => {
     return { ...e, index: i };
   }),
+  coverArt: getCoverArt(pl1),
   name: "Playlist 1",
 };
 
 const playlist2 = {
-  tracks: [...takeFromAlbum([1, 0], DS2Deluxe)].map((e, i) => {
+  tracks: pl2.map(([tracks, album]: any) => (takeFromAlbum(tracks, album))).flat().map((e, i) => {
     return { ...e, index: i };
   }),
+  coverArt: getCoverArt(pl2),
   name: "Playlist 2",
 };
+
 
 export default {
   playlist1,

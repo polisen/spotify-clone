@@ -4,10 +4,10 @@ export const Terack = ({ info, handleClick , isSelected}: any) => {
   let { index, album, coverArt, trackName, artist } = info;
   return (
     <div onClick={() => handleClick(index)}>
-    <Track.Layout  isSelected={isSelected}>
-      <Track.Index index={index} />
+    <Track.Layout  {...{isSelected}}>
+      <Track.Index {...{index, isSelected}} />
       <Track.Title {...{ coverArt, artist, trackName }} />
-      <Track.Album {...{ album }} />
+      <Track.Album {...{ album, isSelected }} />
       <Track.Date {...{ date: "2021-08-11" }} />
       <Track.Time {...{ time: "07:41" }} />
     </Track.Layout>

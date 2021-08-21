@@ -7,15 +7,40 @@ const StyledImage = styled.img`
   box-shadow: 10px 14px 39px 2px rgba(0, 0, 0, 0.2);
 `;
 
+const StyledQuadrantContainer = styled.div`
+  width: calc(100% - 5em);
+  height: calc(100% - 5em);
+  margin: 2.5em;
+  box-shadow: 10px 14px 39px 2px rgba(0, 0, 0, 0.2);
+`;
+
+const StyledQuadrant = styled.img`
+  width: 50%;
+  height: 50%;
+`;
+
 const StyledContainer = styled.div`
     width: 20em;
     height: 20em;
 `
 
-export const PlaylistImage = () => {
+
+interface ImageProps {
+  coverArt: string[]}
+
+
+export const QuadImage = ({coverArt}: ImageProps) => {
+  return (
+    <StyledQuadrantContainer>
+      {coverArt.map(c => (<StyledQuadrant src={c}/>))}
+    </StyledQuadrantContainer>
+  )
+}
+
+export const PlaylistImage = ({coverArt}: ImageProps) => {
   return (
     <StyledContainer>
-      <StyledImage src={Rectangle} />
+      {coverArt.length === 4 ? <QuadImage coverArt={coverArt}/> : <StyledImage src={coverArt[0]} />}
     </StyledContainer>
   );
 };

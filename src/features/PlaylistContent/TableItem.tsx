@@ -64,7 +64,7 @@ export const Layout = ({children, isSelected}: any) => (
   <TrackLayout isSelected={isSelected}>{children}</TrackLayout>
 );
 
-export const Index = ({ index }: any) => (
+export const Index = ({ index, isSelected }: any) => (
   <SectionLayout {...getStyling("index")}>
     <Text.Dimmed>{index + 1}</Text.Dimmed>
   </SectionLayout>
@@ -82,10 +82,9 @@ export const Title = ({ coverArt, artist, trackName }: any) => {
   );
 };
 
-export const Album = ({ album, isHovered }: any) => (
+export const Album = ({ album, isSelected }: any) => (
   <SectionLayout {...getStyling("album")}>
-    {isHovered}
-    <Text.Dimmed >{album}</Text.Dimmed>
+    {isSelected ?     <Text >{album}</Text> :     <Text.Dimmed >{album}</Text.Dimmed>}
   </SectionLayout>
 );
 

@@ -6,12 +6,11 @@ const PlaylistTitle = styled(Text.Playlist)`
 `
 
 
-export const HeaderText = () => {
+export const HeaderText = ({text}: any) => {
     return (
         <div>
         <Text>PLAYLIST</Text>
-        <PlaylistTitle>Playlist 1</PlaylistTitle>
+        <PlaylistTitle>{text}</PlaylistTitle>
         </div>
-
     )
 }

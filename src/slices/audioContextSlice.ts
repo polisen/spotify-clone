@@ -35,15 +35,15 @@ export const audioContext = createSlice({
     },
     setCurrentTrack: (state, action: PayloadAction<string | number>) => {
       const proposeTrackIndex = (index: number) => {
-        if (state.playlists[state.currentPlaylist][index]) {
+        if (state.playlists[state.currentPlaylist].tracks[index]) {
           state.currentlyPlaying =
-            state.playlists[state.currentPlaylist][index];
+            state.playlists[state.currentPlaylist].tracks[index];
           state.isPlaying = true;
         } else if (index < 0) {
           state.currentlyPlaying = initialState.currentlyPlaying;
-        } else if (index > state.playlists[state.currentPlaylist].length - 1) {
+        } else if (index > state.playlists[state.currentPlaylist].tracks.length - 1) {
           if (state.looping) {
-            state.currentlyPlaying = state.playlists[state.currentPlaylist][0];
+            state.currentlyPlaying = state.playlists[state.currentPlaylist].tracks[0];
             state.isPlaying = true;
           } else {
             state.currentlyPlaying = initialState.currentlyPlaying;
