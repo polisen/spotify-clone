@@ -3,7 +3,7 @@ import styled from 'styled-components'
 const Text = ({children}: any) => <DefaultText>{children}</DefaultText>
 
 const DefaultText = styled.p`
-  font-family: montserrat;
+  font-family: 'DM Sans';
   font-weight: bold;
   color: white;
   margin: 0;

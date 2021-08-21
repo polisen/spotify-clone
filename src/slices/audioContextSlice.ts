@@ -65,8 +65,8 @@ export const audioContext = createSlice({
     updateTrackProgress: (state, action: PayloadAction<any>) => {
         let {trackProgress, duration} = action.payload;
         state.elapsed = {
-            timeElapsed: getTimeString(Math.floor(trackProgress)),
-            timeLeft: getTimeString(Math.floor(duration - trackProgress))
+            timeElapsed: trackProgress ? getTimeString(Math.floor(trackProgress)) : '0:00',
+            timeLeft: trackProgress ? getTimeString(Math.floor(duration - trackProgress)) : '0:00'
         }
     },
     updateVolume: (state, action: PayloadAction<number>) => {
@@ -76,9 +76,9 @@ export const audioContext = createSlice({
 });
 
 
-function getTimeString(seconds: number){
-    var minutes = Math.floor(seconds / 60);
-    var seconds = Math.floor(seconds - minutes * 60);
+function getTimeString(secs: number){
+    var minutes = Math.floor(secs / 60);
+    var seconds = Math.floor(secs - minutes * 60);
     return `${minutes}:${String(seconds).length === 1 ? `0${seconds}` : seconds}`
 }
 

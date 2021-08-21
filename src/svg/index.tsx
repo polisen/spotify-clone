@@ -9,6 +9,7 @@ import {ReactComponent as SkipBack} from './SkipBack.svg'
 import {ReactComponent as SkipForward} from './SkipForward.svg'
 import {ReactComponent as StorybookLogo} from './StorybookLogo.svg'
 import {ReactComponent as Volume} from './Volume.svg'
+import {ReactComponent as MusicNote} from './MusicNote.svg'
 
 
 
@@ -23,5 +24,6 @@ export {
     SkipBack,
     SkipForward,
     StorybookLogo,
-    Volume
+    Volume,
+    MusicNote
 }

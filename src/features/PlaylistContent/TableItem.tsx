@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Text from "../../components/Text";
 import { HeaderItem } from "./header";
+import {MusicNote, PlayButton, PauseButton} from 'svg'
 function getStyling(type: string) {
   switch (type) {
     case "index":
@@ -54,6 +55,14 @@ const TrackLayout: any = styled.div`
     isSelected ? "rgba(255,255,255,.2)" : ""};
 `;
 
+
+const Play = styled(PlayButton)`
+width: 1em;
+`
+const Pause = styled(PauseButton)`
+width: 1em;
+`
+
 export const SectionLayout = ({ children, width, alignment }: any) => {
   return (
     <StyledItemContainer {...{ width, alignment }}>
@@ -65,19 +74,16 @@ export const SectionLayout = ({ children, width, alignment }: any) => {
 export const Layout = (props: any) => <TrackLayout {...props} />;
 
 export const PlayPause = ({ isSelected, isPlaying }: any) => {
-  return <>{isSelected ? (isPlaying ? "pause" : "play") : "play"}</>;
+  return <>{isSelected ? (isPlaying ? <Pause/>: <Play/>) : <Play/>}</>;
 };
 
-export const Bars = () => {
-  return <>bars</>;
-};
 
 export const Index = ({ index, isSelected, isHovered, isPlaying }: any) => (
   <SectionLayout {...getStyling("index")}>
     {isHovered ? (
       <PlayPause {...{ isSelected, isPlaying }} />
     ) : isPlaying && isSelected ? (
-      <Bars />
+      <MusicNote style={{width: '1em'}}/>
     ) : (
       <Text.Dimmed>{index + 1}</Text.Dimmed>
     )}

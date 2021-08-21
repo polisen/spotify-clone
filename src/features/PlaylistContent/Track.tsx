@@ -3,15 +3,16 @@ import useHover from "hooks/useHover";
 
 export const Terack = ({ info, handleClick , isSelected, isPlaying}: any) => {
   const [hoverRef, isHovered]: any = useHover();
-  let { index, album, coverArt, trackName, artist } = info;
+  let now = (new Date()).toLocaleDateString('sv-SE')
+  let { index, album, coverArt, trackName, artist, duration } = info;
   return (
     <div ref={hoverRef}>
     <Track.Layout {...{isSelected, onClick: () => handleClick(index)}}>
       <Track.Index {...{index, isSelected, isHovered, isPlaying}} />
       <Track.Title {...{ coverArt, artist, trackName, isHovered }} />
       <Track.Album {...{ album, isSelected, isHovered }} />
-      <Track.Date {...{ date: "2021-08-11" }} />
-      <Track.Time {...{ time: "07:41" }} />
+      <Track.Date {...{ date: now}} />
+      <Track.Time {...{ time: duration}} />
     </Track.Layout>
     </div>
 
