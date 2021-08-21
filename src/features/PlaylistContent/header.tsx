@@ -7,6 +7,7 @@ const HeaderLayout = styled.div`
   border: 1px #444444;
   border-bottom-style: solid;
   display: flex;
+  height:2em;
   align-items: center;
   margin-bottom: 3px;
 `;

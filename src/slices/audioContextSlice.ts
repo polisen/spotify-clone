@@ -32,7 +32,7 @@ export const audioContext = createSlice({
         if (state.playlists[state.currentPlaylist][index]) {
           state.currentlyPlaying =
             state.playlists[state.currentPlaylist][index];
-            state.isPlaying = true;
+          state.isPlaying = true;
         } else if (index < 0) {
           state.currentlyPlaying = initialState.currentlyPlaying;
         } else if (index > state.playlists[state.currentPlaylist].length - 1) {

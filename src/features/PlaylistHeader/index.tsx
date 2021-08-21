@@ -6,7 +6,7 @@ import {PlaylistImage} from './HeaderImage';
 const HeaderContainer = styled.div`
   width: 100%;
   height: 30%;
-  background-color: #3e3e3e;
+  background-color: #5a5a5a;
 `;
 const HeaderLayout = styled.div`
 display:flex;

@@ -47,4 +47,6 @@ export const playlist1 = [
   ...takeFromAlbum([0,1], DS2Deluxe)
 ].map((e,i) => {return {...e, index: i}})
 
-export const playlist2 = {};
+export const playlist2 = [
+    ...takeFromAlbum([1,0], DS2Deluxe)
+  ].map((e,i) => {return {...e, index: i}})

@@ -12,6 +12,7 @@ const ControlBarLayout = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
+  border-top: 1px solid #3b3b3b;
 `;
 
 const ControlBar = () => {

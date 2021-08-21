@@ -15,7 +15,7 @@ const PlaylistLayout = styled.div`
   /* height: 100%; */
   overflow: scroll;
   height: 100%;
-  background: linear-gradient(180deg, #1a1a1a 0%, #070707 100%);
+  background: linear-gradient(180deg, #3b3b3b 0%, #070707 50%);
 `;
 
 

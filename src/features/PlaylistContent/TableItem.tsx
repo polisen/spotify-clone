@@ -29,23 +29,27 @@ const StyledItemContainer = styled.div`
 const StyledItemLayout = styled.div`
   display: inline-flex;
   align-items: center;
-  max-height: 3em;
+  justify-content: center;
+  /* max-height: 3em; */
 `;
 
 const AlbumArt = styled.img`
-  margin: 5px;
-  width: 3em;
+  padding-right: 5px;
+  height: 3em;
 `;
 
-const TrackLayout = styled.div`
+const TrackLayout: any = styled.div`
   display: flex;
-  height: 3em;
+  height: 4em;
+  margin: 5px;
+  align-items: center;
+  justify-content: center;
   :hover {
-    background-color: #444444;
-
+    background-color:${({isSelected}: any) => isSelected ? 'rgba(255,255,255,.2)' : 'rgba(255,255,255,.05)'};
   }
   cursor: pointer;
   border-radius: 4px;
+  background-color: ${({isSelected}: any) => isSelected ? 'rgba(255,255,255,.2)' : ''};
 `;
 
 export const SectionLayout = ({ children, width, alignment }: any) => {
@@ -56,8 +60,8 @@ export const SectionLayout = ({ children, width, alignment }: any) => {
   );
 };
 
-export const Layout = ({ children, props }: any) => (
-  <TrackLayout onClick={() => console.log(props)}>{children}</TrackLayout>
+export const Layout = ({children, isSelected}: any) => (
+  <TrackLayout isSelected={isSelected}>{children}</TrackLayout>
 );
 
 export const Index = ({ index }: any) => (
@@ -66,12 +70,12 @@ export const Index = ({ index }: any) => (
   </SectionLayout>
 );
 
-export const Title = ({ coverArt, artist, title }: any) => {
+export const Title = ({ coverArt, artist, trackName }: any) => {
   return (
     <SectionLayout {...getStyling("title")}>
       <AlbumArt src={coverArt} />
       <div>
-        <Text>{title}</Text>
+        <Text>{trackName}</Text>
         <Text.Dimmed>{artist}</Text.Dimmed>
       </div>
     </SectionLayout>

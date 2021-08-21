@@ -2,6 +2,7 @@ import { Container } from "components/ControlBarContainer";
 import Rectangle from "../../svg/Rectangle.svg";
 import styled from "styled-components";
 import Text from 'components/Text'
+import { useSelector } from "react-redux";
 const Image = styled.img`
   width: calc(5em - 20px);
   height: calc(5em - 20px);
@@ -28,10 +29,11 @@ const TrackInfo = ({ artist, title }: any) => {
 };
 
 const CurrentlyPlaying = () => {
+  const {trackName, artist, coverArt} = useSelector((state: any) => state.audio.currentlyPlaying)
   return (
     <Container>
-      <AlbumImage src={Rectangle} />
-      <TrackInfo artist={"Artist"} title={"Title"} />
+      <AlbumImage src={coverArt} />
+      <TrackInfo artist={artist} title={trackName} />
     </Container>
   );
 };
