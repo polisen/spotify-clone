@@ -12,6 +12,10 @@ const initialState: any = {
   looping: false,
   currentlyPlaying: {},
   currentIndex: 0,
+  elapsed: {
+    timeLeft: '',
+    timeElapsed: '',
+  },
   currentPlaylist: "playlist1",
   playlists: {
     playlist1,
@@ -56,10 +60,24 @@ export const audioContext = createSlice({
     setCurrentPlaylist: (state, action: PayloadAction<string>) => {
       state.currentPlaylist = action.payload;
     },
+    updateTrackProgress: (state, action: PayloadAction<any>) => {
+        let {trackProgress, duration} = action.payload;
+        state.elapsed = {
+            timeElapsed: getTimeString(Math.floor(trackProgress)),
+            timeLeft: getTimeString(Math.floor(duration - trackProgress))
+        }
+    }
   },
 });
 
-export const { togglePlayState, setCurrentTrack, setCurrentPlaylist } =
+
+function getTimeString(seconds: number){
+    var minutes = Math.floor(seconds / 60);
+    var seconds = Math.floor(seconds - minutes * 60);
+    return `${minutes}:${String(seconds).length === 1 ? `0${seconds}` : seconds}`
+}
+
+export const { togglePlayState, setCurrentTrack, setCurrentPlaylist, updateTrackProgress } =
   audioContext.actions;
 
 export default audioContext.reducer;

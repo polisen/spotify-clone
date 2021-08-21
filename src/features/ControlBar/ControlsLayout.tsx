@@ -3,6 +3,7 @@ import { Container } from "components/ControlBarContainer";
 import AudioControls from "./AudioControls";
 import styled from "styled-components";
 import { useAudioPlayer } from "./ControlsLayout.hooks";
+import Progress from "./Progress";
 const ControlsContainer = styled(Container)`
   flex-direction: "column";
   height: 100%;
@@ -19,7 +20,10 @@ const Flex = styled.div`
 
 const InputContainer = styled(Flex)`
   height: 50%;
-`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+`;
 
 const StyledInput: any = styled.input`
   height: 5px;
@@ -69,17 +73,16 @@ const Controls = ({ tracks }: any) => {
   return (
     <ControlsContainer>
       <Flex>
-      <InputContainer>
-
-        <AudioControls
-          isPlaying={isPlaying}
-          onPrevClick={playPrevious}
-          onNextClick={playNext}
-          onPlayPauseClick={togglePlaying}
-        />
-        </InputContainer>
-
         <InputContainer>
+          <AudioControls
+            isPlaying={isPlaying}
+            onPrevClick={playPrevious}
+            onNextClick={playNext}
+            onPlayPauseClick={togglePlaying}
+          />
+        </InputContainer>
+        <InputContainer>
+          <Progress.Elapsed />
           <StyledInput
             type="range"
             value={trackProgress}
@@ -91,6 +94,7 @@ const Controls = ({ tracks }: any) => {
             onKeyUp={onScrubEnd}
             percentage={currentPercentage}
           />
+          <Progress.Left />
         </InputContainer>
       </Flex>
     </ControlsContainer>

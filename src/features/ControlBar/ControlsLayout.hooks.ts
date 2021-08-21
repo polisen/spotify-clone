@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { togglePlayState, setCurrentTrack } from "slices/audioContextSlice";
+import { togglePlayState, setCurrentTrack, updateTrackProgress } from "slices/audioContextSlice";
 export function useAudioPlayer() {
   const dispatch = useDispatch();
   const { isPlaying, currentlyPlaying } = useSelector(
@@ -24,6 +24,7 @@ export function useAudioPlayer() {
     setCurrentPercentage(
       duration ? `${(trackProgress / duration) * 100}%` : "0%"
     );
+      dispatch(updateTrackProgress({trackProgress, duration}))
   }, [trackProgress]);
 
   const startTimer = () => {
@@ -35,7 +36,7 @@ export function useAudioPlayer() {
       } else {
         setTrackProgress(audioRef.current.currentTime);
       }
-    }, 500);
+    }, 1000);
   };
 
   const togglePlaying = (bool: boolean | undefined) =>
