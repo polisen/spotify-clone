@@ -15,8 +15,7 @@ const PlaylistLayout = styled.div`
   /* height: 100%; */
   overflow: scroll;
   height: 100%;
-  background: linear-gradient(180deg, #3b3b3b 0%, #070707 50%);
-`;
+  background: #070707;`
 
 
 export const MainContent = () => {

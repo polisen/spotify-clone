@@ -14,6 +14,7 @@ const ContentLayout = styled.div`
 const PlaylistContentLayout = styled.div`
   width: 100%;
   height: 100%;
+  background: linear-gradient(180deg, #101010 0%, #070707 50%);
 `;
 
 export interface PlaylistContentProps {}
