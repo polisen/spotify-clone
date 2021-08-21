@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Text from "../../components/Text";
-import {HeaderItem} from './header'
+import { HeaderItem } from "./header";
 function getStyling(type: string) {
   switch (type) {
     case "index":
@@ -45,11 +45,13 @@ const TrackLayout: any = styled.div`
   align-items: center;
   justify-content: center;
   :hover {
-    background-color:${({isSelected}: any) => isSelected ? 'rgba(255,255,255,.2)' : 'rgba(255,255,255,.05)'};
+    background-color: ${({ isSelected }: any) =>
+      isSelected ? "rgba(255,255,255,.2)" : "rgba(255,255,255,.05)"};
   }
   cursor: pointer;
   border-radius: 4px;
-  background-color: ${({isSelected}: any) => isSelected ? 'rgba(255,255,255,.2)' : ''};
+  background-color: ${({ isSelected }: any) =>
+    isSelected ? "rgba(255,255,255,.2)" : ""};
 `;
 
 export const SectionLayout = ({ children, width, alignment }: any) => {
@@ -60,23 +62,39 @@ export const SectionLayout = ({ children, width, alignment }: any) => {
   );
 };
 
-export const Layout = ({children, isSelected}: any) => (
-  <TrackLayout isSelected={isSelected}>{children}</TrackLayout>
-);
+export const Layout = (props: any) => <TrackLayout {...props} />;
 
-export const Index = ({ index, isSelected }: any) => (
+export const PlayPause = ({ isSelected, isPlaying }: any) => {
+  return <>{isSelected ? (isPlaying ? "pause" : "play") : "play"}</>;
+};
+
+export const Bars = () => {
+  return <>bars</>;
+};
+
+export const Index = ({ index, isSelected, isHovered, isPlaying }: any) => (
   <SectionLayout {...getStyling("index")}>
-    <Text.Dimmed>{index + 1}</Text.Dimmed>
+    {isHovered ? (
+      <PlayPause {...{ isSelected, isPlaying }} />
+    ) : isPlaying && isSelected ? (
+      <Bars />
+    ) : (
+      <Text.Dimmed>{index + 1}</Text.Dimmed>
+    )}
   </SectionLayout>
 );
 
-export const Title = ({ coverArt, artist, trackName }: any) => {
+export const Title = ({ coverArt, artist, trackName, isHovered }: any) => {
   return (
     <SectionLayout {...getStyling("title")}>
       <AlbumArt src={coverArt} />
       <div>
         <Text>{trackName}</Text>
-        <Text.Dimmed>{artist}</Text.Dimmed>
+        {isHovered ? (
+          <Text>{artist}</Text>
+        ) : (
+          <Text.Dimmed>{artist}</Text.Dimmed>
+        )}
       </div>
     </SectionLayout>
   );
@@ -84,7 +102,7 @@ export const Title = ({ coverArt, artist, trackName }: any) => {
 
 export const Album = ({ album, isSelected }: any) => (
   <SectionLayout {...getStyling("album")}>
-    {isSelected ?     <Text >{album}</Text> :     <Text.Dimmed >{album}</Text.Dimmed>}
+    {isSelected ? <Text>{album}</Text> : <Text.Dimmed>{album}</Text.Dimmed>}
   </SectionLayout>
 );
 
@@ -100,7 +118,7 @@ export const Time = ({ time }: any) => (
   </SectionLayout>
 );
 
-export const HeaderText = ({icon, text, slug}: HeaderItem) => (
+export const HeaderText = ({ icon, text, slug }: HeaderItem) => (
   <SectionLayout {...getStyling(slug)}>
     {icon ? icon : <Text.Dimmed>{text}</Text.Dimmed>}
   </SectionLayout>
@@ -113,5 +131,5 @@ export const Track = {
   Album,
   Date,
   Time,
-  HeaderText
+  HeaderText,
 };
