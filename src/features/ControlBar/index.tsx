@@ -6,7 +6,7 @@ import Volume from "./Volume";
 const ControlBarLayout = styled.div`
   background-color: #181818;
   position: fixed;
-  height: 5em;
+  height: 6em;
   bottom: 0;
   left: 0;
   display: flex;

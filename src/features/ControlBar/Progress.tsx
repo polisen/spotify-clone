@@ -1,27 +1,40 @@
 import { useSelector } from "react-redux";
-import Text from 'components/Text'
-import {Container} from 'components/ControlBarContainer'
-import styled from 'styled-components'
+import Text from "components/Text";
+import { Container } from "components/ControlBarContainer";
+import styled from "styled-components";
 
+const LeftContainer = styled(Container)`
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  margin-right: 1em;
+`;
 
-const ProgressContainer = styled(Container)`
-display: flex;
-align-items: center;
-justify-content: center;
-`
+const RightContainer = styled(Container)`
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  margin-left: 1em;
+`;
 
 const Elapsed = () => {
   let timeElapsed = useSelector(
     (state: any) => state.audio.elapsed.timeElapsed
   );
-  return (<ProgressContainer><Text.Dimmed>{timeElapsed}</Text.Dimmed></ProgressContainer>);
+  return (
+    <LeftContainer>
+      <Text.Dimmed>{timeElapsed}</Text.Dimmed>
+    </LeftContainer>
+  );
 };
 
 const Left = () => {
-  let timeLeft = useSelector(
-    (state: any) => state.audio.elapsed.timeLeft
+  let timeLeft = useSelector((state: any) => state.audio.elapsed.timeLeft);
+  return (
+    <RightContainer>
+      <Text.Dimmed>{timeLeft}</Text.Dimmed>
+    </RightContainer>
   );
-  return (<ProgressContainer><Text.Dimmed>{timeLeft}</Text.Dimmed></ProgressContainer>);
 };
 
 export default {

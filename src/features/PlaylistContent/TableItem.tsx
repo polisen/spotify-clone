@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Text from "../../components/Text";
 import { HeaderItem } from "./header";
-import {MusicNote, PlayButton, PauseButton} from 'svg'
+import { MusicNote, TinyPlay, TinyPause } from "svg";
 function getStyling(type: string) {
   switch (type) {
     case "index":
@@ -55,13 +55,12 @@ const TrackLayout: any = styled.div`
     isSelected ? "rgba(255,255,255,.2)" : ""};
 `;
 
-
-const Play = styled(PlayButton)`
-width: 1em;
-`
-const Pause = styled(PauseButton)`
-width: 1em;
-`
+const Play = styled(TinyPlay)`
+  width: 1.25em;
+`;
+const Pause = styled(TinyPause)`
+  width: 1.25em;
+`;
 
 export const SectionLayout = ({ children, width, alignment }: any) => {
   return (
@@ -74,29 +73,39 @@ export const SectionLayout = ({ children, width, alignment }: any) => {
 export const Layout = (props: any) => <TrackLayout {...props} />;
 
 export const PlayPause = ({ isSelected, isPlaying }: any) => {
-  return <>{isSelected ? (isPlaying ? <Pause/>: <Play/>) : <Play/>}</>;
+  return <>{isSelected ? isPlaying ? <Pause /> : <Play /> : <Play />}</>;
 };
-
 
 export const Index = ({ index, isSelected, isHovered, isPlaying }: any) => (
   <SectionLayout {...getStyling("index")}>
     {isHovered ? (
       <PlayPause {...{ isSelected, isPlaying }} />
-    ) : isPlaying && isSelected ? (
-      <MusicNote style={{width: '1em'}}/>
-    ) : (
+    ) :  isSelected ? (
+      <Text.Green>{index + 1}</Text.Green>
+    ) :(
       <Text.Dimmed>{index + 1}</Text.Dimmed>
     )}
   </SectionLayout>
 );
 
-export const Title = ({ coverArt, artist, trackName, isHovered }: any) => {
+export const Title = ({
+  coverArt,
+  artist,
+  trackName,
+  isSelected,
+  isHovered,
+  isPlaying,
+}: any) => {
   return (
     <SectionLayout {...getStyling("title")}>
       <AlbumArt src={coverArt} />
       <div>
-        <Text>{trackName}</Text>
-        {isHovered ? (
+        {isSelected ? (
+          <Text.Green>{trackName}</Text.Green>
+        ) : (
+          <Text>{trackName}</Text>
+        )}
+        {isHovered || isSelected ? (
           <Text>{artist}</Text>
         ) : (
           <Text.Dimmed>{artist}</Text.Dimmed>
@@ -126,7 +135,7 @@ export const Time = ({ time }: any) => (
 
 export const HeaderText = ({ icon, text, slug }: HeaderItem) => (
   <SectionLayout {...getStyling(slug)}>
-    {icon ? icon : <Text.Dimmed>{text}</Text.Dimmed>}
+    {icon ? icon : <Text.DimmedBold>{text}</Text.DimmedBold>}
   </SectionLayout>
 );
 

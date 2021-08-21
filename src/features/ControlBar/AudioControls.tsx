@@ -14,22 +14,28 @@ const ButtonContainer = styled.div`
   }
 `;
 
+const SkipContainer = styled.div`
+  width: 100%;
+  display: flex;
+  height: 20%;
+  justify-content: center;
+  align-items: center;
+  :hover {
+    svg > path {
+        fill: #fff;
+  }
+  }
+`;
+
 const Previous = styled(SkipBack)`
   width: 1em;
-  :hover {
-    line {
-      stroke: purple;
-    }
-  }
+  margin-right: .5em;
 `;
 
 const Next = styled(SkipForward)`
   width: 1em;
-  :hover {
-    line {
-      stroke: purple;
-    }
-  }
+  margin-left: .1em;
+
 `;
 
 const ControlsContainer = styled(Container)`
@@ -37,7 +43,7 @@ const ControlsContainer = styled(Container)`
   justify-content: space-between;
   align-items: space-between;
   min-width: 2em;
-  max-width: 6em;
+  max-width: 8em;
 `;
 
 const AudioControls = ({
@@ -47,11 +53,15 @@ const AudioControls = ({
   onNextClick,
 }: any) => (
   <ControlsContainer>
-    <Previous onClick={() => onPrevClick} />
+    <SkipContainer >
+    <Previous  onClick={() => onPrevClick()}/>
+    </SkipContainer>
     <ButtonContainer onClick={() => onPlayPauseClick(!isPlaying)}>
       {isPlaying ? <PauseButton /> : <PlayButton />}
     </ButtonContainer>
-    <Next onClick={() => onPrevClick} />
+    <SkipContainer>
+    <Next onClick={() => onNextClick()}/>
+    </SkipContainer>
   </ControlsContainer>
 );
 

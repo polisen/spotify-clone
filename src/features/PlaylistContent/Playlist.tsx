@@ -10,7 +10,7 @@ const PlaylistBox = styled.div`
 
 export const Playlist = () => {
   const dispatch = useDispatch();
-  const { currentPlaylist, currentlyPlaying, isPlaying } = useSelector(
+  const { currentPlaylist, currentPlaylistPlaying, currentlyPlaying, isPlaying } = useSelector(
     (state: any) => state.audio
   );
   const tracks = useSelector(
@@ -24,16 +24,15 @@ export const Playlist = () => {
   return (
     <PlaylistBox>
       {tracks.map((e: object, index: number) => (
-        <div>
           <Track
             key={index}
             index={index + 1}
-            isSelected={currentlyPlaying.index === index}
+            isSelected={currentlyPlaying.index === index && currentPlaylist === currentPlaylistPlaying}
             info={e}
             handleClick={handleTrackChange}
             isPlaying={isPlaying}
           />
-        </div>
+
       ))}
     </PlaylistBox>
   );

@@ -9,7 +9,7 @@ export const Terack = ({ info, handleClick , isSelected, isPlaying}: any) => {
     <div ref={hoverRef}>
     <Track.Layout {...{isSelected, onClick: () => handleClick(index)}}>
       <Track.Index {...{index, isSelected, isHovered, isPlaying}} />
-      <Track.Title {...{ coverArt, artist, trackName, isHovered }} />
+      <Track.Title {...{ coverArt, artist, trackName, isSelected, isHovered, isPlaying }} />
       <Track.Album {...{ album, isSelected, isHovered }} />
       <Track.Date {...{ date: now}} />
       <Track.Time {...{ time: duration}} />

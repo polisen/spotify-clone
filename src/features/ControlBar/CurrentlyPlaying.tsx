@@ -7,11 +7,13 @@ const Image = styled.img`
   width: calc(5em - 20px);
   height: calc(5em - 20px);
   margin: 7.5px;
+  border: none;
 `;
 const AlbumImage = ({ src }: any) => {
   return (
     <div>
-      <Image src={src} />
+      
+      {src && <Image src={src} /> }
     </div>
   );
 };

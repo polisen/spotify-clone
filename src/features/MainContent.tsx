@@ -4,7 +4,7 @@ import PlaylistHeader from './PlaylistHeader'
 import Sidebar from './SideBar'
 const Layout = styled.div`
   width: 100vw;
-  height: calc(100vh - 5em);
+  height: calc(100vh - 6em);
   display: flex;
   overflow: hidden;
 `;

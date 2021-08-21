@@ -19,17 +19,19 @@ const Flex = styled.div`
 `;
 
 const InputContainer = styled(Flex)`
-  height: 50%;
+  height: 70%;
   width: 100%;
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
 `;
 
 const StyledInput: any = styled.input`
   height: 5px;
   appearance: none;
   display: flex;
-  width: 80%;
+  width: 100%;
   /* margin-bottom: 10px; */
   border-radius: 12px;
   transition: background 0.2s ease;
@@ -81,19 +83,21 @@ const Controls = ({ tracks }: any) => {
             onPlayPauseClick={togglePlaying}
           />
         </InputContainer>
-        <InputContainer>
+        <InputContainer style={{ height: "30%", width: '80%' }}>
           <Progress.Elapsed />
-          <StyledInput
-            type="range"
-            value={trackProgress}
-            step="1"
-            min="0"
-            max={duration ? duration : `${duration}`}
-            onChange={(e: any) => onScrub(e.target.value)}
-            onMouseUp={onScrubEnd}
-            onKeyUp={onScrubEnd}
-            percentage={currentPercentage}
-          />
+          <Flex style={{ height: "1.3em" }}>
+            <StyledInput
+              type="range"
+              value={trackProgress}
+              step="1"
+              min="0"
+              max={duration ? duration : `${duration}`}
+              onChange={(e: any) => onScrub(e.target.value)}
+              onMouseUp={onScrubEnd}
+              onKeyUp={onScrubEnd}
+              percentage={currentPercentage}
+            />
+          </Flex>
           <Progress.Left />
         </InputContainer>
       </Flex>
