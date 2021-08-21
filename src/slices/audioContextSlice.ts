@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import playlists from "./playlists";
 
-import { playlist1, playlist2 } from "./playlists";
 export interface FileStructureState {
   files: {
     [key: string]: object;
@@ -17,10 +17,12 @@ const initialState: any = {
     timeElapsed: '',
   },
   currentPlaylist: "playlist1",
-  playlists: {
-    playlist1,
-    playlist2,
-  },
+  availablePlaylists: Object.entries(playlists).map(([key, value]: any)=>  ({
+      name: value.name,
+      slug: key
+  })),
+  playlists,
+  volume: 1
 };
 
 export const audioContext = createSlice({
@@ -66,6 +68,9 @@ export const audioContext = createSlice({
             timeElapsed: getTimeString(Math.floor(trackProgress)),
             timeLeft: getTimeString(Math.floor(duration - trackProgress))
         }
+    },
+    updateVolume: (state, action: PayloadAction<number>) => {
+        state.volume = action.payload;
     }
   },
 });
@@ -77,7 +82,7 @@ function getTimeString(seconds: number){
     return `${minutes}:${String(seconds).length === 1 ? `0${seconds}` : seconds}`
 }
 
-export const { togglePlayState, setCurrentTrack, setCurrentPlaylist, updateTrackProgress } =
+export const { togglePlayState, setCurrentTrack, setCurrentPlaylist, updateTrackProgress, updateVolume } =
   audioContext.actions;
 
 export default audioContext.reducer;

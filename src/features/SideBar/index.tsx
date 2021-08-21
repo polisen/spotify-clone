@@ -5,6 +5,7 @@ import Text from 'components/Text'
 import {useDispatch} from 'react-redux'
 import {setCurrentPlaylist} from 'slices/audioContextSlice'
 import { useState, useEffect } from 'react';
+import {useSelector} from 'react-redux';
 
 const SidebarLayout = styled(Resizable)`
   width: 30%;
@@ -92,7 +93,7 @@ const SideBar = () => {
       icon: <StorybookIcon/>,
     },
   };
-  const playlists = [{name: 'Playlist 1', slug: 'playlist1'}, {name: 'Playlist 2', slug: 'playlist2'}];
+  const playlists = useSelector((state: any) => state.audio.availablePlaylists)
   useEffect(() => {
     dispatch(setCurrentPlaylist(playlists[0].slug))
   }, []);
@@ -110,7 +111,7 @@ const SideBar = () => {
           return <MenuItem key={key} {...value} />;
         })}
         <Divider />
-        {playlists.map(({name, slug}) => {
+        {playlists.map(({name, slug}: any) => {
           return <PlaylistItem key={slug} text={name} slug={slug} setPlaylist={handlePlaylistChange}/>;
         })}
       </Margins>

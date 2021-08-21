@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { togglePlayState, setCurrentTrack, updateTrackProgress } from "slices/audioContextSlice";
 export function useAudioPlayer() {
   const dispatch = useDispatch();
-  const { isPlaying, currentlyPlaying } = useSelector(
+  const { isPlaying, currentlyPlaying, volume } = useSelector(
     (state: any) => state.audio
   );
   const [trackProgress, setTrackProgress] = useState(0);
@@ -13,7 +13,6 @@ export function useAudioPlayer() {
   // Refs
   const audioRef = useRef(new Audio(currentlyPlaying.mediaLink));
 
-  let { ended, currentTime, play, pause, volume } = audioRef.current;
   const intervalRef: any = useRef();
   const isReady = useRef(false);
 
@@ -51,6 +50,11 @@ export function useAudioPlayer() {
     audioRef.current.currentTime = value;
     setTrackProgress(audioRef.current.currentTime);
   };
+
+
+  useEffect(() => {
+    setVolume(Number(volume))
+  }, [volume]);
 
   const onScrubEnd = () => {
     if (!isPlaying) {

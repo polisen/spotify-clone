@@ -14,7 +14,7 @@ export const Playlist = () => {
   const dispatch = useDispatch()
   const currentPlaylist = useSelector((state: any) => state.audio.currentPlaylist)
   const currentlyPlaying = useSelector((state: any) => state.audio.currentlyPlaying)
-  const tracks = useSelector((state: any) => state.audio.playlists[currentPlaylist])
+  const tracks = useSelector((state: any) => state.audio.playlists[currentPlaylist].tracks)
   console.log(tracks)
 
   function handleTrackChange(index: number) {
