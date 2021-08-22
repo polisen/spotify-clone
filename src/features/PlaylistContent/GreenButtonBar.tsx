@@ -34,12 +34,12 @@ const Button = () => {
     >
       {currentPlaylistPlaying === currentPlaylist ? (
         isPlaying ? (
-          <GreenPlay role="playbutton" />
+          <GreenPause role="pausebutton" />
         ) : (
-          <GreenPause />
+          <GreenPlay role="playbutton"/>
         )
       ) : (
-        <GreenPause role="playbutton" />
+        <GreenPlay role="playbutton" />
       )}
     </GreenButton>
   );

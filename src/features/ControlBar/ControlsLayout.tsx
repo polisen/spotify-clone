@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Container } from "components/ControlBarContainer";
 import AudioControls from "./AudioControls";
 import styled from "styled-components";
-import { useAudioPlayer } from "./ControlsLayout.hooks";
+import { useAudioPlayer } from "hooks/useAudioPlayer";
 import Progress from "./Progress";
 const ControlsContainer = styled(Container)`
   flex-direction: "column";
@@ -60,10 +60,8 @@ const StyledInput: any = styled.input`
 const Controls = ({ tracks }: any) => {
   let {
     isPlaying,
-    volume,
     currentPercentage,
     trackProgress,
-    setVolume,
     onScrubEnd,
     duration,
     onScrub,

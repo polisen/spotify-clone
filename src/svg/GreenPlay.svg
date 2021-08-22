@@ -1,6 +1,5 @@
 <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-<title>Play</title>
+<title>Pause</title>
 <circle cx="28" cy="28" r="28" fill="#1CB955"/>
-<rect x="20" y="16" width="5" height="23" fill="white"/>
-<rect x="31" y="16" width="5" height="23" fill="white"/>
+<path d="M21 17.5V38.5L39 28L21 17.5Z" fill="white" stroke="white"/>
 </svg>

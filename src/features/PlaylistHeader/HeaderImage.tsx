@@ -8,8 +8,8 @@ const StyledImage = styled.img`
 `;
 
 const StyledQuadrantContainer = styled.div`
-  width: calc(100% - 5em);
-  height: calc(100% - 5em);
+  width: calc(100% - 3em);
+  height: calc(100% - 3em);
   margin: 2.5em;
   box-shadow: 10px 14px 39px 2px rgba(0, 0, 0, 0.2);
 `;
@@ -21,28 +21,33 @@ const StyledQuadrant = styled.img`
 `;
 
 const StyledContainer = styled.div`
-    width: 20em;
-    height: 20em;
+  height: 22vh;
+  width: 22vh;
   padding: 0;
-`
-
+`;
 
 interface ImageProps {
-  coverArt: string[]}
-
-
-export const QuadImage = ({coverArt}: ImageProps) => {
-  return (
-    <StyledQuadrantContainer>
-      {coverArt.map(c => (<StyledQuadrant src={c}/>))}
-    </StyledQuadrantContainer>
-  )
+  coverArt: string[];
 }
 
-export const PlaylistImage = ({coverArt}: ImageProps) => {
+export const QuadImage = ({ coverArt }: ImageProps) => {
+  return (
+    <StyledQuadrantContainer>
+      {coverArt.map((c) => (
+        <StyledQuadrant src={c} />
+      ))}
+    </StyledQuadrantContainer>
+  );
+};
+
+export const PlaylistImage = ({ coverArt }: ImageProps) => {
   return (
     <StyledContainer>
-      {coverArt.length === 4 ? <QuadImage coverArt={coverArt}/> : <StyledImage src={coverArt[0]} />}
+      {coverArt.length === 4 ? (
+        <QuadImage coverArt={coverArt} />
+      ) : (
+        <StyledImage src={coverArt[0]} />
+      )}
     </StyledContainer>
   );
 };

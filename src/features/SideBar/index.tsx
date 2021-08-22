@@ -1,11 +1,11 @@
 import styled from "styled-components";
 import { Resizable } from "re-resizable";
-import {Github, StorybookLogo} from "svg";
-import Text from 'components/Text'
-import {useDispatch} from 'react-redux'
-import {setCurrentPlaylist} from 'slices/audioContextSlice'
-import { useState, useEffect } from 'react';
-import {useSelector} from 'react-redux';
+import { Github, StorybookLogo } from "svg";
+import Text from "components/Text";
+import { useDispatch } from "react-redux";
+import { setCurrentPlaylist } from "slices/audioContextSlice";
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 
 const SidebarLayout = styled(Resizable)`
   width: 30%;
@@ -26,8 +26,6 @@ const SidebarLayoutProps = {
   minWidth: "15%",
 };
 
-
-
 const MenuItemContainer = styled.div`
   display: flex;
   flex-direction: row;
@@ -35,11 +33,10 @@ const MenuItemContainer = styled.div`
   width: 100%;
   margin-top: 1em;
   cursor: pointer;
-  :hover ${Text.Dimmed}{
+  :hover ${Text.Dimmed} {
     color: white;
   }
 `;
-
 
 const GithubIcon = styled(Github)`
   width: 2em;
@@ -50,9 +47,7 @@ const StorybookIcon = styled(StorybookLogo)`
   width: 2em;
   margin: 5px;
   height: 2em;
-`
-
-
+`;
 
 const MenuItem = ({ text, icon }: any) => (
   <MenuItemContainer>
@@ -72,49 +67,54 @@ const Divider = styled.hr`
 const PlaylistItem = ({ text, slug, setPlaylist }: any) => {
   return (
     <MenuItemContainer onClick={() => setPlaylist(slug)}>
-      <Text.Dimmed >{text}</Text.Dimmed>
+      <Text.Dimmed>{text}</Text.Dimmed>
     </MenuItemContainer>
   );
 };
 
-const Margins = styled.div`
-  width: 100%;
-`;
+const items = {
+  github: {
+    text: "polisen/spotify-clone",
+    icon: <GithubIcon />,
+  },
+  storybook: {
+    text: "Storybook",
+    icon: <StorybookIcon />,
+  },
+};
+
 
 const SideBar = () => {
-  const dispatch = useDispatch()
-  const items = {
-    github: {
-      text: "polisen/spotify-clone",
-      icon: <GithubIcon/>,
-    },
-    storybook: {
-      text: "Storybook",
-      icon: <StorybookIcon/>,
-    },
-  };
-  const playlists = useSelector((state: any) => state.audio.availablePlaylists)
+  const dispatch = useDispatch();
+
+  const playlists = useSelector((state: any) => state.audio.availablePlaylists);
   useEffect(() => {
-    dispatch(setCurrentPlaylist(playlists[0].slug))
+    dispatch(setCurrentPlaylist(playlists[0].slug));
   }, []);
 
-  function handlePlaylistChange(slug: string){
-    dispatch(setCurrentPlaylist(slug))
+  function handlePlaylistChange(slug: string) {
+    dispatch(setCurrentPlaylist(slug));
   }
-
 
   return (
     <SidebarLayout {...SidebarLayoutProps}>
-      <Margins>
+      <div>
         <Divider {...{ color: "black", sm: true }} />
         {Object.entries(items).map(([key, value]) => {
           return <MenuItem key={key} {...value} />;
         })}
         <Divider />
-        {playlists.map(({name, slug}: any) => {
-          return <PlaylistItem key={slug} text={name} slug={slug} setPlaylist={handlePlaylistChange}/>;
+        {playlists.map(({ name, slug }: any) => {
+          return (
+            <PlaylistItem
+              key={slug}
+              text={name}
+              slug={slug}
+              setPlaylist={handlePlaylistChange}
+            />
+          );
         })}
-      </Margins>
+      </div>
     </SidebarLayout>
   );
 };
