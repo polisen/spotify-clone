@@ -25,8 +25,6 @@ const Button = () => {
   const { isPlaying, currentPlaylistPlaying, currentPlaylist } = useSelector(
     (state: any) => state.audio
   );
-
-  console.log(isPlaying, currentPlaylistPlaying, currentPlaylist);
   return (
     <GreenButton
       role="button"

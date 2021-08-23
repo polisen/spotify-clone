@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { GreenButtonBar } from "./GreenButtonBar";
-import { Header } from "./header";
+import { Header } from "./Header";
 import { Playlist } from "./Playlist";
 
 const ContentLayout = styled.div`

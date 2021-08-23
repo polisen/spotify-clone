@@ -8,13 +8,13 @@ import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 
 const SidebarLayout = styled(Resizable)`
-  width: 30%;
+  /* width: 30%; */
   height: 100%;
   background-color: black;
   flex-direction: column;
   display: flex;
-  align-items: center;
-  padding-left: 1.5em;
+  align-items: flex-start;
+  padding-left: 1em;
 `;
 
 const SidebarLayoutProps = {
@@ -56,7 +56,9 @@ const MenuItem = ({ text, icon }: any) => (
   </MenuItemContainer>
 );
 
-const Divider = styled.hr`
+
+
+const Divider: any= styled.hr`
   border: none;
   border-top: 2px solid;
   border-color: ${({ color }) => (color ? color : "#444444")};
@@ -77,10 +79,10 @@ const items = {
     text: "polisen/spotify-clone",
     icon: <GithubIcon />,
   },
-  storybook: {
-    text: "Storybook",
-    icon: <StorybookIcon />,
-  },
+  // storybook: {
+  //   text: "Storybook",
+  //   icon: <StorybookIcon />,
+  // },
 };
 
 
@@ -98,12 +100,12 @@ const SideBar = () => {
 
   return (
     <SidebarLayout {...SidebarLayoutProps}>
-      <div>
-        <Divider {...{ color: "black", sm: true }} />
+
+        {/* <Divider {...{ color: "black", sm: true }} /> */}
         {Object.entries(items).map(([key, value]) => {
           return <MenuItem key={key} {...value} />;
         })}
-        <Divider />
+        <Divider {...{sm: true}} />
         {playlists.map(({ name, slug }: any) => {
           return (
             <PlaylistItem
@@ -114,7 +116,6 @@ const SideBar = () => {
             />
           );
         })}
-      </div>
     </SidebarLayout>
   );
 };

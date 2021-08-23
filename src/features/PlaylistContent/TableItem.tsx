@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Text from "../../components/Text";
-import { HeaderItem } from "./header";
+import { HeaderItem } from "./Header";
 import { MusicNote, TinyPlay, TinyPause } from "svg";
 function getStyling(type: string) {
   switch (type) {

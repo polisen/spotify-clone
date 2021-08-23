@@ -32,7 +32,6 @@ export const Playlist = () => {
             handleClick={handleTrackChange}
             isPlaying={isPlaying}
           />
-
       ))}
     </PlaylistBox>
   );

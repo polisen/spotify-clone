@@ -47,8 +47,8 @@ export const Header = () => {
 
   return (
         <HeaderLayout>
-          {items.map((i) => (
-            <Track.HeaderText {...i} />
+          {items.map((i, index) => (
+            <Track.HeaderText key={index} {...i} />
           ))}
         </HeaderLayout>
   );
