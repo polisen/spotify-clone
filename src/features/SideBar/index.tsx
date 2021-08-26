@@ -4,7 +4,7 @@ import { Github } from 'svg';
 import Text from 'components/Text';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCurrentPlaylist } from 'slices/audioContextSlice';
-import React, { useEffect } from 'react';
+import React, { useEffect, ReactNode } from 'react';
 
 const SidebarLayout = styled(Resizable)`
   /* width: 30%; */
@@ -48,28 +48,22 @@ const GithubIcon = styled(Github)`
 //   height: 2em;
 // `;
 
-const MenuItem = ({ text, icon }: any) => (
+interface SideBarLinkListProps {
+  [key: string]: SidebarLinkProps
+}
+interface SidebarLinkProps {
+  text: string;
+  icon: ReactNode;
+}
+
+const SidebarLink = ({ text, icon }: SidebarLinkProps) => (
   <MenuItemContainer>
     {icon}
     <Text.Dimmed>{text}</Text.Dimmed>
   </MenuItemContainer>
 );
 
-const Divider: any = styled.hr`
-  border: none;
-  border-top: 2px solid;
-  border-color: ${({ color }) => (color || '#444444')};
-  width: calc(100% - 1.5em);
-  margin: ${({ sm }: any) => (sm ? '1em 0 1em 0' : '2em 0 2em 0')};
-`;
-
-const PlaylistItem = ({ text, slug, setPlaylist }: any) => (
-  <MenuItemContainer onClick={() => setPlaylist(slug)}>
-    <Text.Dimmed>{text}</Text.Dimmed>
-  </MenuItemContainer>
-);
-
-const items = {
+const items:SideBarLinkListProps = {
   github: {
     text: 'polisen/spotify-clone',
     icon: <GithubIcon />,
@@ -79,6 +73,26 @@ const items = {
   //   icon: <StorybookIcon />,
   // },
 };
+
+const Divider: any = styled.hr`
+  border: none;
+  border-top: 2px solid;
+  border-color: ${({ color }) => (color || '#444444')};
+  width: calc(100% - 1.5em);
+  margin: ${({ sm }: any) => (sm ? '1em 0 1em 0' : '2em 0 2em 0')};
+`;
+
+interface PlaylistItemProps {
+  text: string;
+  slug: string;
+  setPlaylist: Function;
+}
+
+const PlaylistItem = ({ text, slug, setPlaylist }: PlaylistItemProps) => (
+  <MenuItemContainer onClick={() => setPlaylist(slug)}>
+    <Text.Dimmed>{text}</Text.Dimmed>
+  </MenuItemContainer>
+);
 
 const SideBar = () => {
   const dispatch = useDispatch();
@@ -96,7 +110,7 @@ const SideBar = () => {
     <SidebarLayout {...SidebarLayoutProps}>
 
       {/* <Divider {...{ color: "black", sm: true }} /> */}
-      {Object.entries(items).map(([key, value]) => <MenuItem key={key} {...value} />)}
+      {Object.entries(items).map(([key, value]) => <SidebarLink key={key} {...value} />)}
       <Divider {...{ sm: true }} />
       {playlists.map(({ name, slug }: any) => (
         <PlaylistItem

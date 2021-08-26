@@ -1,16 +1,19 @@
 import { useState, useRef, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { togglePlayState, setCurrentTrack, updateTrackProgress } from 'slices/audioContextSlice';
+import { RootState } from 'app/store';
 
 function useAudioPlayer() {
   const dispatch = useDispatch();
   const { isPlaying, currentlyPlaying, volume } = useSelector(
-    (state: any) => state.audio,
+    (state: RootState) => state.audio,
   );
+
   const [trackProgress, setTrackProgress] = useState(0);
   const [currentPercentage, setCurrentPercentage] = useState('');
   const audioRef = useRef(new Audio(currentlyPlaying.mediaLink));
-  const intervalRef: any = useRef();
+
+  const intervalRef: React.MutableRefObject<any> = useRef();
   const isReady = useRef(false);
   const { duration } = audioRef.current;
 
@@ -38,10 +41,10 @@ function useAudioPlayer() {
     }, 1000);
   };
 
-  const onScrub = (value: any) => {
+  const onScrub = (value: string) => {
     // Clear any timers already running
     clearInterval(intervalRef.current);
-    audioRef.current.currentTime = value;
+    audioRef.current.currentTime = Number(value);
     setTrackProgress(audioRef.current.currentTime);
   };
 
@@ -49,7 +52,7 @@ function useAudioPlayer() {
     setVolume(Number(volume));
   }, [volume]);
 
-  const onScrubEnd = () => {
+  const onScrubEnd = (): void => {
     if (!isPlaying) {
       togglePlaying(true);
     }
@@ -100,5 +103,4 @@ function useAudioPlayer() {
     onScrubEnd,
   };
 }
-
 export default useAudioPlayer;
