@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useAppSelector, useAppDispatch } from 'app/hooks';
 import { setCurrentTrack } from 'slices/audioContextSlice';
 import { nanoid } from '@reduxjs/toolkit';
 import Track from './Track';
@@ -12,14 +12,14 @@ const PlaylistBox = styled.div`
 `;
 
 const Playlist = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const {
     currentPlaylist, currentPlaylistPlaying, currentlyPlaying, isPlaying,
-  } = useSelector(
-    (state: any) => state.audio,
+  } = useAppSelector(
+    (state) => state.audio,
   );
-  const tracks = useSelector(
-    (state: any) => state.audio.playlists[currentPlaylist].tracks,
+  const tracks = useAppSelector(
+    (state) => state.audio.playlists[currentPlaylist].tracks,
   );
 
   function handleTrackChange(index: number) {

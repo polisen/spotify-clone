@@ -1,15 +1,15 @@
 import { useEffect } from 'react';
 
-export default function useKeypress(keyCode: number, action: Function) {
+export default function useKeypress(code: string, action: Function) {
   useEffect(() => {
-    function onKeyup(e: any) {
-      if (e.keyCode === keyCode) action();
+    function onKeyup(e:KeyboardEvent) {
+      if (e.code === code) action();
     }
     function onKeyDown(e: any) {
-      if (e.keyCode === keyCode) e.preventDefault();
+      if (e.code === code) e.preventDefault();
     }
     window.addEventListener('keyup', onKeyup);
     window.addEventListener('keydown', onKeyDown);
     return () => window.removeEventListener('keyup', onKeyup);
-  }, [keyCode, action]);
+  }, [code, action]);
 }

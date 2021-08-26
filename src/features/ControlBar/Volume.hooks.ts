@@ -11,8 +11,8 @@ export function useVolume() {
     dispatch(updateVolume(volume));
   }, [volume]);
 
-  const onScrub = (value: number) => {
-    setVolume(value);
+  const onScrub = (value: string) => {
+    setVolume(Number(value));
   };
 
   return {

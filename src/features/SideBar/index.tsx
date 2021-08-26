@@ -49,7 +49,7 @@ const GithubIcon = styled(Github)`
 // `;
 
 interface SideBarLinkListProps {
-  [key: string]: SidebarLinkProps
+  [key: string]: SidebarLinkProps;
 }
 interface SidebarLinkProps {
   text: string;
@@ -63,7 +63,7 @@ const SidebarLink = ({ text, icon }: SidebarLinkProps) => (
   </MenuItemContainer>
 );
 
-const items:SideBarLinkListProps = {
+const items: SideBarLinkListProps = {
   github: {
     text: 'polisen/spotify-clone',
     icon: <GithubIcon />,
@@ -74,12 +74,12 @@ const items:SideBarLinkListProps = {
   // },
 };
 
-const Divider = styled.hr<{ color?: string, sm: boolean }>`
+const Divider = styled.hr<{ color?: string; sm: boolean }>`
   border: none;
   border-top: 2px solid;
-  border-color: ${({ color }) => (color || '#444444')};
+  border-color: ${({ color }) => color || '#444444'};
   width: calc(100% - 1.5em);
-  margin: ${({ sm }: any) => (sm ? '1em 0 1em 0' : '2em 0 2em 0')};
+  margin: ${({ sm }) => (sm ? '1em 0 1em 0' : '2em 0 2em 0')};
 `;
 
 interface PlaylistItemProps {
@@ -108,15 +108,12 @@ const SideBar = () => {
 
   return (
     <SidebarLayout {...SidebarLayoutProps}>
-      {Object.entries(items).map(([key, value]) => <SidebarLink key={key} {...value} />)}
+      {Object.entries(items).map(([key, value]) => (
+        <SidebarLink key={key} {...value} />
+      ))}
       <Divider {...{ sm: true }} />
-      {playlists.map(({ name, slug }: any) => (
-        <PlaylistItem
-          key={slug}
-          text={name}
-          slug={slug}
-          setPlaylist={handlePlaylistChange}
-        />
+      {playlists.map(({ name, slug }: { name: string; slug: string }) => (
+        <PlaylistItem key={slug} text={name} slug={slug} setPlaylist={handlePlaylistChange} />
       ))}
     </SidebarLayout>
   );

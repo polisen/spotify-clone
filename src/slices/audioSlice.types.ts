@@ -40,7 +40,9 @@ export interface AudioState {
 export const initialState: AudioState = {
   isPlaying: false,
   looping: false,
-  currentlyPlaying: { index: 0 },
+  currentlyPlaying: {
+    index: 0, coverArt: '', artist: '', trackName: '',
+  },
   currentPlaylistPlaying: '',
   currentIndex: 0,
   elapsed: {

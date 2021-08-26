@@ -10,7 +10,6 @@ const VolumeContainer = styled(Container)`
 const VolumeBox = styled(Container)`
   height: 100%;
   width: 30%;
-  /* background-color: red; */
   padding-right: 20px;
 `;
 
@@ -23,27 +22,26 @@ const VolumeIcon = styled(Volume)`
   }
 `;
 
-const StyledInput: any = styled.input`
+const StyledInput = styled.input<{ percentage?:string | number }>`
   height: 5px;
   appearance: none;
   display: flex;
   width: 80%;
-  /* margin-bottom: 10px; */
   border-radius: 12px;
   transition: background 0.2s ease;
   cursor: pointer;
-  background: ${({ percentage }: any) => `-webkit-gradient(linear, 0% 0%, 100% 0%, color-stop(${percentage}%, #fff), color-stop(${percentage}%, #777))`};
+  background: ${({ percentage }) => `-webkit-gradient(linear, 0% 0%, 100% 0%, color-stop(${percentage}%, #fff), color-stop(${percentage}%, #777))`};
   ::-webkit-slider-thumb {
-    -webkit-appearance: none; /* Override default look */
+    -webkit-appearance: none;
     appearance: none;
     width: 0px;
-    border-radius: 100%; /* Set a specific slider handle width */
-    height: 0px; /* Slider handle height */
-    background: #fff; /* Green background */
-    cursor: pointer; /* Cursor on hover */
+    border-radius: 100%;
+    height: 0px;
+    background: #fff;
+    cursor: pointer;
   }
   :hover {
-    background: ${({ percentage }: any) => `-webkit-gradient(linear, 0% 0%, 100% 0%, color-stop(${percentage}%, #1cb955), color-stop(${percentage}%, #777))`};
+    background: ${({ percentage }) => `-webkit-gradient(linear, 0% 0%, 100% 0%, color-stop(${percentage}%, #1cb955), color-stop(${percentage}%, #777))`};
     ::-webkit-slider-thumb {
       width: 12px; /* Set a specific slider handle width */
       height: 12px; /* Slider handle height */
@@ -65,7 +63,7 @@ const VolumeLayout = () => {
           max="1"
           value={volume}
           percentage={Math.floor(volume * 100)}
-          onChange={(e: any) => onScrub(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => onScrub(e.target.value)}
         />
       </VolumeBox>
     </VolumeContainer>

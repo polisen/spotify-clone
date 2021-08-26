@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { GreenPlay, GreenPause } from 'svg';
-import { useSelector, useDispatch } from 'react-redux';
+import { useAppSelector, useAppDispatch } from 'app/hooks';
 import { greenButtonToggle } from 'slices/audioContextSlice';
 
 const ControlsLayout = styled.div`
@@ -19,9 +19,9 @@ const GreenButton = styled.div`
 `;
 
 const Button = () => {
-  const dispatch = useDispatch();
-  const { isPlaying, currentPlaylistPlaying, currentPlaylist } = useSelector(
-    (state: any) => state.audio,
+  const dispatch = useAppDispatch();
+  const { isPlaying, currentPlaylistPlaying, currentPlaylist } = useAppSelector(
+    (state) => state.audio,
   );
   return (
     <GreenButton role="button" onClick={() => dispatch(greenButtonToggle(currentPlaylist))}>

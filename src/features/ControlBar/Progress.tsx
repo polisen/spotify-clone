@@ -1,4 +1,4 @@
-import { useSelector } from 'react-redux';
+import { useAppSelector } from 'app/hooks';
 import React from 'react';
 import Text from 'components/Text';
 import Container from 'components/ControlBarContainer';
@@ -19,8 +19,8 @@ const RightContainer = styled(Container)`
 `;
 
 const Elapsed = () => {
-  const timeElapsed = useSelector(
-    (state: any) => state.audio.elapsed.timeElapsed,
+  const timeElapsed = useAppSelector(
+    (state) => state.audio.elapsed.timeElapsed,
   );
   return (
     <LeftContainer>
@@ -30,7 +30,7 @@ const Elapsed = () => {
 };
 
 const Left = () => {
-  const timeLeft = useSelector((state: any) => state.audio.elapsed.timeLeft);
+  const timeLeft = useAppSelector((state) => state.audio.elapsed.timeLeft);
   return (
     <RightContainer>
       <Text.Dimmed>{timeLeft}</Text.Dimmed>

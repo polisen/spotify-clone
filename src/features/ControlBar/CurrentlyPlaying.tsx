@@ -1,7 +1,7 @@
 import Container from 'components/ControlBarContainer';
 import styled from 'styled-components';
 import Text from 'components/Text';
-import { useSelector } from 'react-redux';
+import { useAppSelector } from 'app/hooks';
 import React from 'react';
 
 const Image = styled.img`
@@ -10,14 +10,17 @@ const Image = styled.img`
   margin: 7.5px;
   border: none;
 `;
-const AlbumImage = ({ src }: any) => (
-  <div>
-
-    {src && <Image src={src} /> }
-  </div>
+const AlbumImage = ({ src }: { src: string | undefined }) => (
+  <div>{src && <Image src={src} />}</div>
 );
 
-const TrackInfo = ({ artist, title }: any) => (
+const TrackInfo = ({
+  artist,
+  title,
+}: {
+  artist: string | undefined;
+  title: string | undefined;
+}) => (
   <div style={{ padding: '5px' }}>
     <Text>{title}</Text>
     <Text.Dimmed>{artist}</Text.Dimmed>
@@ -25,7 +28,7 @@ const TrackInfo = ({ artist, title }: any) => (
 );
 
 const CurrentlyPlaying = () => {
-  const { trackName, artist, coverArt } = useSelector((state: any) => state.audio.currentlyPlaying);
+  const { trackName, artist, coverArt } = useAppSelector((state) => state.audio.currentlyPlaying);
   return (
     <Container>
       <AlbumImage src={coverArt} />

@@ -219,9 +219,7 @@ const getEven = (num: number): number => {
 };
 
 const getCoverArt = function getPlaylistCoverArtAssortment(arr: any): string[] {
-  const uniqueCovers = [
-    ...new Set(arr.map(([, album]: any) => album.coverArt)),
-  ];
+  const uniqueCovers = [...new Set(arr.map(([, album]: any) => album.coverArt))];
   const randomSelection: any = uniqueCovers
     .sort(() => 0.5 - Math.random())
     .slice(0, uniqueCovers.length > 4 ? 4 : getEven(uniqueCovers.length));
@@ -241,7 +239,6 @@ const pl2 = [
   [[0, 1, 2, 3, 4, 5], Burial],
   [[0, 1, 2, 3, 4, 5], TakeCare],
   [[0, 1, 2, 3], Kulor],
-
 ];
 
 const playlist1 = {
@@ -257,7 +254,8 @@ const playlist1 = {
 const playlist2 = {
   tracks: pl2
     .map(([tracks, album]: any) => takeFromAlbum(tracks, album))
-    .flat().sort(() => 0.5 - Math.random())
+    .flat()
+    .sort(() => 0.5 - Math.random())
     .map((e, i) => ({ ...e, index: i })),
   coverArt: getCoverArt(pl2),
   name: 'Playlist 2',

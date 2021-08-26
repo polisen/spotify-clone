@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useAppSelector } from 'app/hooks';
 import { Container } from 'components/common';
 import HeaderText from './HeaderText';
 import { PlaylistImage } from './HeaderImage';
@@ -15,11 +15,11 @@ const HeaderLayout = styled(Container.Flex)`
 `;
 
 const PlaylistHeader = () => {
-  const currentPlaylist = useSelector(
-    (state: any) => state.audio.currentPlaylist,
+  const currentPlaylist = useAppSelector(
+    (state) => state.audio.currentPlaylist,
   );
-  const { name, coverArt } = useSelector(
-    (state: any) => state.audio.playlists[currentPlaylist],
+  const { name, coverArt } = useAppSelector(
+    (state) => state.audio.playlists[currentPlaylist],
   );
   return (
     <HeaderContainer>
