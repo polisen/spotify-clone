@@ -1,5 +1,5 @@
-import Rectangle from "../../svg/Rectangle.svg";
-import styled from "styled-components";
+import styled from 'styled-components';
+import React from 'react';
 
 const StyledImage = styled.img`
   width: calc(100% - 5em);
@@ -30,24 +30,20 @@ interface ImageProps {
   coverArt: string[];
 }
 
-export const QuadImage = ({ coverArt }: ImageProps) => {
-  return (
-    <StyledQuadrantContainer>
-      {coverArt.map((c) => (
-        <StyledQuadrant src={c} />
-      ))}
-    </StyledQuadrantContainer>
-  );
-};
+export const QuadImage = ({ coverArt }: ImageProps) => (
+  <StyledQuadrantContainer>
+    {coverArt.map((c) => (
+      <StyledQuadrant src={c} />
+    ))}
+  </StyledQuadrantContainer>
+);
 
-export const PlaylistImage = ({ coverArt }: ImageProps) => {
-  return (
-    <StyledContainer>
-      {coverArt.length === 4 ? (
-        <QuadImage coverArt={coverArt} />
-      ) : (
-        <StyledImage src={coverArt[0]} />
-      )}
-    </StyledContainer>
-  );
-};
+export const PlaylistImage = ({ coverArt }: ImageProps) => (
+  <StyledContainer>
+    {coverArt.length === 4 ? (
+      <QuadImage coverArt={coverArt} />
+    ) : (
+      <StyledImage src={coverArt[0]} />
+    )}
+  </StyledContainer>
+);

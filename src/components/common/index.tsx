@@ -1,7 +1,7 @@
-import Container from './Container'
-import Divider from './Divider'
+import Container from './Container';
+import Divider from './Divider';
 
 export {
-    Container,
-    Divider
-}
+  Container,
+  Divider,
+};

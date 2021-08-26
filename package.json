@@ -31,7 +31,29 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": [
+      "react-app",
+      "airbnb",
+      "airbnb-typescript",
+      "airbnb/hooks"
+    ],
+    "parserOptions": {
+      "project": "./tsconfig.json"
+    },
+    "rules": {
+      "react/jsx-props-no-spreading": "off",
+      "no-console": ["error", { "allow": ["warn", "error", "debug"] }],
+      "react-hooks/exhaustive-deps": "off"
+    },
+    "overrides": [
+      {
+        "files": [
+          "**/*.ts?(x)"
+        ],
+        "rules": {
+        }
+      }
+    ]
   },
   "browserslist": {
     "production": [
@@ -45,7 +67,22 @@
       "last 1 safari version"
     ]
   },
+  "jest": {
+    "verbose": true
+  },
   "devDependencies": {
-    "@types/styled-components": "^5.1.12"
+    "@types/styled-components": "^5.1.12",
+    "@typescript-eslint/eslint-plugin": "^4.29.3",
+    "@typescript-eslint/parser": "^4.29.3",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb": "18.2.1",
+    "eslint-config-airbnb-typescript": "^14.0.0",
+    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.24.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "prettier": "^2.3.2",
+    "prettier-eslint": "^13.0.0",
+    "react-app-rewired": "^2.1.8"
   }
 }

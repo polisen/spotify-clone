@@ -1,13 +1,14 @@
-import styled from "styled-components";
-import { ReactComponent as Clock } from "../../svg/Clock.svg";
-// import { Item } from "./TableItem";
-import { ReactNode } from "react";
-import {Track} from './TableItem';
+import styled from 'styled-components';
+import { Clock } from 'svg';
+import React, { ReactNode } from 'react';
+import { nanoid } from '@reduxjs/toolkit';
+import { Track } from './TableItem';
+
 const HeaderLayout = styled.div`
   border: 1px #444444;
   border-bottom-style: solid;
   display: flex;
-  height:2em;
+  height: 2em;
   align-items: center;
   margin-bottom: 3px;
 `;
@@ -24,32 +25,32 @@ export const Header = () => {
    */
   const items: HeaderItem[] = [
     {
-      slug: "index",
-      text: "#",
+      slug: 'index',
+      text: '#',
     },
     {
-      slug: "title",
-      text: "TITLE",
+      slug: 'title',
+      text: 'TITLE',
     },
     {
-      slug: "album",
-      text: "ALBUM",
+      slug: 'album',
+      text: 'ALBUM',
     },
     {
-      slug: "date",
-      text: "DATE ADDED",
+      slug: 'date',
+      text: 'DATE ADDED',
     },
     {
       icon: <Clock />,
-      slug: 'time'
+      slug: 'time',
     },
   ];
 
   return (
-        <HeaderLayout>
-          {items.map((i, index) => (
-            <Track.HeaderText key={index} {...i} />
-          ))}
-        </HeaderLayout>
+    <HeaderLayout>
+      {items.map((i) => (
+        <Track.HeaderText key={nanoid()} {...i} />
+      ))}
+    </HeaderLayout>
   );
 };

@@ -1,9 +1,10 @@
-import React, { useState, useEffect, useRef } from "react";
-import { Container } from "components/ControlBarContainer";
-import AudioControls from "./AudioControls";
-import styled from "styled-components";
-import { useAudioPlayer } from "hooks/useAudioPlayer";
-import Progress from "./Progress";
+import React from 'react';
+import Container from 'components/ControlBarContainer';
+import styled from 'styled-components';
+import useAudioPlayer from 'hooks/useAudioPlayer';
+import AudioControls from './AudioControls';
+import Progress from './Progress';
+
 const ControlsContainer = styled(Container)`
   flex-direction: "column";
   height: 100%;
@@ -36,8 +37,7 @@ const StyledInput: any = styled.input`
   border-radius: 12px;
   transition: background 0.2s ease;
   cursor: pointer;
-  background: ${({ percentage }: any) =>
-    `-webkit-gradient(linear, 0% 0%, 100% 0%, color-stop(${percentage}, #fff), color-stop(${percentage}, #777))`};
+  background: ${({ percentage }: any) => `-webkit-gradient(linear, 0% 0%, 100% 0%, color-stop(${percentage}, #fff), color-stop(${percentage}, #777))`};
   ::-webkit-slider-thumb {
     -webkit-appearance: none; /* Override default look */
     appearance: none;
@@ -48,8 +48,7 @@ const StyledInput: any = styled.input`
     cursor: pointer; /* Cursor on hover */
   }
   :hover {
-    background: ${({ percentage }: any) =>
-      `-webkit-gradient(linear, 0% 0%, 100% 0%, color-stop(${percentage}, #1cb955), color-stop(${percentage}, #777))`};
+    background: ${({ percentage }: any) => `-webkit-gradient(linear, 0% 0%, 100% 0%, color-stop(${percentage}, #1cb955), color-stop(${percentage}, #777))`};
     ::-webkit-slider-thumb {
       width: 12px; /* Set a specific slider handle width */
       height: 12px; /* Slider handle height */
@@ -57,8 +56,8 @@ const StyledInput: any = styled.input`
   }
 `;
 
-const Controls = ({ tracks }: any) => {
-  let {
+const Controls = () => {
+  const {
     isPlaying,
     currentPercentage,
     trackProgress,
@@ -81,15 +80,15 @@ const Controls = ({ tracks }: any) => {
             onPlayPauseClick={togglePlaying}
           />
         </InputContainer>
-        <InputContainer style={{ height: "30%", width: '80%' }}>
+        <InputContainer style={{ height: '30%', width: '80%' }}>
           <Progress.Elapsed />
-          <Flex style={{ height: "1.3em" }}>
+          <Flex style={{ height: '1.3em' }}>
             <StyledInput
               type="range"
               value={trackProgress}
               step="1"
               min="0"
-              max={duration ? duration : `${duration}`}
+              max={duration || `${duration}`}
               onChange={(e: any) => onScrub(e.target.value)}
               onMouseUp={onScrubEnd}
               onKeyUp={onScrubEnd}

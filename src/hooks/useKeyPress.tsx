@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect } from 'react';
 
 export default function useKeypress(keyCode: number, action: Function) {
   useEffect(() => {
@@ -8,8 +8,8 @@ export default function useKeypress(keyCode: number, action: Function) {
     function onKeyDown(e: any) {
       if (e.keyCode === keyCode) e.preventDefault();
     }
-    window.addEventListener("keyup", onKeyup);
-    window.addEventListener("keydown", onKeyDown);
-    return () => window.removeEventListener("keyup", onKeyup);
-  }, []);
+    window.addEventListener('keyup', onKeyup);
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keyup', onKeyup);
+  }, [keyCode, action]);
 }

@@ -1,23 +1,21 @@
-import React from "react";
-import styled from "styled-components";
-import {MainContent} from './features/MainContent'
-import Controls from './features/ControlBar'
+import React from 'react';
 import useKeypress from 'hooks/useKeyPress';
-import { useDispatch } from "react-redux";
-import {togglePlayState} from 'slices/audioContextSlice'
+import { useDispatch } from 'react-redux';
+import { togglePlayState } from 'slices/audioContextSlice';
+import Controls from './features/ControlBar';
+import MainContent from './features/MainContent';
+
 function App() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   useKeypress(32, () => {
-    dispatch(togglePlayState())
+    dispatch(togglePlayState());
   });
   return (
     <>
-      <MainContent/>
+      <MainContent />
       <Controls />
     </>
   );
 }
-
-
 
 export default App;

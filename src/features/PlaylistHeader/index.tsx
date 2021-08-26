@@ -1,8 +1,10 @@
-import styled from "styled-components";
-import { HeaderText } from "./HeaderText";
-import { PlaylistImage } from "./HeaderImage";
-import { useSelector } from "react-redux";
-import {Container} from 'components/common'
+import styled from 'styled-components';
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { Container } from 'components/common';
+import HeaderText from './HeaderText';
+import { PlaylistImage } from './HeaderImage';
+
 const HeaderContainer = styled(Container)`
   height: 30%;
   background-color: #5a5a5a;
@@ -14,12 +16,11 @@ const HeaderLayout = styled(Container.Flex)`
 
 const PlaylistHeader = () => {
   const currentPlaylist = useSelector(
-    (state: any) => state.audio.currentPlaylist
+    (state: any) => state.audio.currentPlaylist,
   );
   const { name, coverArt } = useSelector(
-    (state: any) => state.audio.playlists[currentPlaylist]
+    (state: any) => state.audio.playlists[currentPlaylist],
   );
-  console.log(name, coverArt);
   return (
     <HeaderContainer>
       <HeaderLayout>

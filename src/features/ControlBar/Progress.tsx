@@ -1,7 +1,8 @@
-import { useSelector } from "react-redux";
-import Text from "components/Text";
-import { Container } from "components/ControlBarContainer";
-import styled from "styled-components";
+import { useSelector } from 'react-redux';
+import React from 'react';
+import Text from 'components/Text';
+import Container from 'components/ControlBarContainer';
+import styled from 'styled-components';
 
 const LeftContainer = styled(Container)`
   display: flex;
@@ -18,8 +19,8 @@ const RightContainer = styled(Container)`
 `;
 
 const Elapsed = () => {
-  let timeElapsed = useSelector(
-    (state: any) => state.audio.elapsed.timeElapsed
+  const timeElapsed = useSelector(
+    (state: any) => state.audio.elapsed.timeElapsed,
   );
   return (
     <LeftContainer>
@@ -29,7 +30,7 @@ const Elapsed = () => {
 };
 
 const Left = () => {
-  let timeLeft = useSelector((state: any) => state.audio.elapsed.timeLeft);
+  const timeLeft = useSelector((state: any) => state.audio.elapsed.timeLeft);
   return (
     <RightContainer>
       <Text.Dimmed>{timeLeft}</Text.Dimmed>

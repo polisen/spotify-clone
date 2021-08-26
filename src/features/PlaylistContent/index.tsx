@@ -1,7 +1,8 @@
-import styled from "styled-components";
-import { GreenButtonBar } from "./GreenButtonBar";
-import { Header } from "./Header";
-import { Playlist } from "./Playlist";
+import styled from 'styled-components';
+import React from 'react';
+import GreenButtonBar from './GreenButtonBar';
+import { Header } from './Header';
+import Playlist from './Playlist';
 
 const ContentLayout = styled.div`
   max-width: 100%;
@@ -19,16 +20,14 @@ const PlaylistContentLayout = styled.div`
 
 export interface PlaylistContentProps {}
 
-const PlaylistContent: React.SFC<PlaylistContentProps> = () => {
-  return (
-    <PlaylistContentLayout>
-      <ContentLayout>
-        <GreenButtonBar />
-        <Header />
-        <Playlist />
-      </ContentLayout>
-    </PlaylistContentLayout>
-  );
-};
+const PlaylistContent: React.SFC<PlaylistContentProps> = () => (
+  <PlaylistContentLayout>
+    <ContentLayout>
+      <GreenButtonBar />
+      <Header />
+      <Playlist />
+    </ContentLayout>
+  </PlaylistContentLayout>
+);
 
 export default PlaylistContent;

@@ -1,29 +1,29 @@
-import { useState, useRef, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { togglePlayState, setCurrentTrack, updateTrackProgress } from "slices/audioContextSlice";
-export function useAudioPlayer() {
+import { useState, useRef, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { togglePlayState, setCurrentTrack, updateTrackProgress } from 'slices/audioContextSlice';
+
+function useAudioPlayer() {
   const dispatch = useDispatch();
   const { isPlaying, currentlyPlaying, volume } = useSelector(
-    (state: any) => state.audio
+    (state: any) => state.audio,
   );
   const [trackProgress, setTrackProgress] = useState(0);
-  const [currentPercentage, setCurrentPercentage] = useState("");
-  // Destructure for conciseness
-
-  // Refs
+  const [currentPercentage, setCurrentPercentage] = useState('');
   const audioRef = useRef(new Audio(currentlyPlaying.mediaLink));
-
   const intervalRef: any = useRef();
   const isReady = useRef(false);
-
-  // Destructure for conciseness
   const { duration } = audioRef.current;
+
+  const togglePlaying = (bool: boolean | undefined) => dispatch(togglePlayState(bool));
+  const playNext = () => dispatch(setCurrentTrack('increment'));
+  const playPrevious = () => dispatch(setCurrentTrack('decrement'));
+  const setVolume = (num: number) => { audioRef.current.volume = num; };
 
   useEffect(() => {
     setCurrentPercentage(
-      duration ? `${(trackProgress / duration) * 100}%` : "0%"
+      duration ? `${(trackProgress / duration) * 100}%` : '0%',
     );
-      dispatch(updateTrackProgress({trackProgress, duration}))
+    dispatch(updateTrackProgress({ trackProgress, duration }));
   }, [trackProgress]);
 
   const startTimer = () => {
@@ -38,12 +38,6 @@ export function useAudioPlayer() {
     }, 1000);
   };
 
-  const togglePlaying = (bool: boolean | undefined) =>
-    dispatch(togglePlayState(bool));
-  const playNext = () => dispatch(setCurrentTrack("increment"));
-  const playPrevious = () => dispatch(setCurrentTrack("decrement"));
-  const setVolume = (num: number) => (audioRef.current.volume = num);
-
   const onScrub = (value: any) => {
     // Clear any timers already running
     clearInterval(intervalRef.current);
@@ -51,9 +45,8 @@ export function useAudioPlayer() {
     setTrackProgress(audioRef.current.currentTime);
   };
 
-
   useEffect(() => {
-    setVolume(Number(volume))
+    setVolume(Number(volume));
   }, [volume]);
 
   const onScrubEnd = () => {
@@ -70,7 +63,7 @@ export function useAudioPlayer() {
     } else {
       audioRef.current.pause();
     }
-  }, [isPlaying]);
+  }, [isPlaying, audioRef, startTimer]);
 
   useEffect(() => {
     audioRef.current.pause();
@@ -87,13 +80,11 @@ export function useAudioPlayer() {
     }
   }, [currentlyPlaying]);
 
-  useEffect(() => {
-    // Pause and clean up on unmount
-    return () => {
-      audioRef.current.pause();
-      clearInterval(intervalRef.current);
-    };
-  }, []);
+  useEffect(() => () => {
+    audioRef.current.pause();
+    clearInterval(intervalRef.current);
+  },
+  []);
 
   return {
     isPlaying,
@@ -109,3 +100,5 @@ export function useAudioPlayer() {
     onScrubEnd,
   };
 }
+
+export default useAudioPlayer;

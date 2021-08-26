@@ -1,9 +1,8 @@
-import { useState } from "react";
-import styled from "styled-components";
-import { GreenPlay, GreenPause } from "svg";
-import { useSelector } from "react-redux";
-import { greenButtonToggle } from "slices/audioContextSlice";
-import { useDispatch } from "react-redux";
+import React from 'react';
+import styled from 'styled-components';
+import { GreenPlay, GreenPause } from 'svg';
+import { useSelector, useDispatch } from 'react-redux';
+import { greenButtonToggle } from 'slices/audioContextSlice';
 
 const ControlsLayout = styled.div`
   width: 100%;
@@ -21,32 +20,28 @@ const GreenButton = styled.div`
 
 const Button = () => {
   const dispatch = useDispatch();
-  const [state, setState] = useState(false);
   const { isPlaying, currentPlaylistPlaying, currentPlaylist } = useSelector(
-    (state: any) => state.audio
+    (state: any) => state.audio,
   );
   return (
-    <GreenButton
-      role="button"
-      onClick={() => dispatch(greenButtonToggle(currentPlaylist))}
-    >
-      {currentPlaylistPlaying === currentPlaylist ? (
-        isPlaying ? (
-          <GreenPause role="pausebutton" />
-        ) : (
-          <GreenPlay role="playbutton"/>
-        )
-      ) : (
-        <GreenPlay role="playbutton" />
-      )}
+    <GreenButton role="button" onClick={() => dispatch(greenButtonToggle(currentPlaylist))}>
+      {() => {
+        if (currentPlaylistPlaying === currentPlaylist) {
+          if (isPlaying) {
+            return <GreenPause role="button" />;
+          }
+            <GreenPlay role="button" />;
+        }
+        return <GreenPlay role="button" />;
+      }}
     </GreenButton>
   );
 };
 
-export const GreenButtonBar = () => {
-  return (
-    <ControlsLayout>
-      <Button />
-    </ControlsLayout>
-  );
-};
+const GreenButtonBar = () => (
+  <ControlsLayout>
+    <Button />
+  </ControlsLayout>
+);
+
+export default GreenButtonBar;

@@ -1,7 +1,9 @@
-import React from "react";
-import { PlayButton, PauseButton, SkipBack, SkipForward } from "svg";
-import styled from "styled-components";
-import { Container } from "components/ControlBarContainer";
+import React from 'react';
+import {
+  PlayButton, PauseButton, SkipBack, SkipForward,
+} from 'svg';
+import styled from 'styled-components';
+import Container from 'components/ControlBarContainer';
 
 const ButtonContainer = styled.div`
   width: 100%;
@@ -53,14 +55,14 @@ const AudioControls = ({
   onNextClick,
 }: any) => (
   <ControlsContainer>
-    <SkipContainer >
-    <Previous  onClick={() => onPrevClick()}/>
+    <SkipContainer>
+      <Previous onClick={() => onPrevClick()} />
     </SkipContainer>
     <ButtonContainer onClick={() => onPlayPauseClick(!isPlaying)}>
       {isPlaying ? <PauseButton /> : <PlayButton />}
     </ButtonContainer>
     <SkipContainer>
-    <Next onClick={() => onNextClick()}/>
+      <Next onClick={() => onNextClick()} />
     </SkipContainer>
   </ControlsContainer>
 );
