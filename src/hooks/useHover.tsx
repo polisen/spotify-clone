@@ -1,24 +1,29 @@
-import { useState, useEffect, useRef } from 'react';
+import { RefObject, useEffect, useState } from 'react';
 
-export default function useHover() {
-  const [value, setValue] = useState(false);
-  const ref = useRef(null);
-  const handleMouseOver = () => setValue(true);
-  const handleMouseOut = () => setValue(false);
-  useEffect(
-    () => {
-      const node: any = ref.current;
-      if (node) {
-        node.addEventListener('mouseover', handleMouseOver);
-        node.addEventListener('mouseout', handleMouseOut);
-        return () => {
-          node.removeEventListener('mouseover', handleMouseOver);
-          node.removeEventListener('mouseout', handleMouseOut);
-        };
-      }
-      return () => {};
-    },
-    [ref], // Recall only if ref changes
-  );
-  return [ref, value];
+function useHover<T extends HTMLElement = HTMLElement>(
+  elementRef: RefObject<T>,
+): boolean {
+  const [value, setValue] = useState<boolean>(false);
+
+  const handleMouseEnter = () => setValue(true);
+  const handleMouseLeave = () => setValue(false);
+
+  useEffect(() => {
+    const node = elementRef?.current;
+
+    if (node) {
+      node.addEventListener('mouseenter', handleMouseEnter);
+      node.addEventListener('mouseleave', handleMouseLeave);
+
+      return () => {
+        node.removeEventListener('mouseenter', handleMouseEnter);
+        node.removeEventListener('mouseleave', handleMouseLeave);
+      };
+    }
+    return undefined;
+  }, [elementRef]);
+
+  return value;
 }
+
+export default useHover;

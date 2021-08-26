@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useAppDispatch } from 'app/hooks';
 import { updateVolume } from 'slices/audioContextSlice';
 
 export function useVolume() {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   const [volume, setVolume] = useState(1);
 
@@ -11,7 +11,7 @@ export function useVolume() {
     dispatch(updateVolume(volume));
   }, [volume]);
 
-  const onScrub = (value: any) => {
+  const onScrub = (value: number) => {
     setVolume(value);
   };
 

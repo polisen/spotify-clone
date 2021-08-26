@@ -6,7 +6,7 @@ const PlaylistTitle = styled(Text.Playlist)`
   margin-bottom: 0.5em;
 `;
 
-const HeaderText = ({ text }: any) => (
+const HeaderText = ({ text }: { text:string }) => (
   <div>
     <Text>PLAYLIST</Text>
     <PlaylistTitle>{text}</PlaylistTitle>

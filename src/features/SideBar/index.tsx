@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Resizable } from 're-resizable';
 import { Github } from 'svg';
 import Text from 'components/Text';
-import { useDispatch, useSelector } from 'react-redux';
+import { useAppSelector, useAppDispatch } from 'app/hooks';
 import { setCurrentPlaylist } from 'slices/audioContextSlice';
 import React, { useEffect, ReactNode } from 'react';
 
@@ -74,7 +74,7 @@ const items:SideBarLinkListProps = {
   // },
 };
 
-const Divider: any = styled.hr`
+const Divider = styled.hr<{ color?: string, sm: boolean }>`
   border: none;
   border-top: 2px solid;
   border-color: ${({ color }) => (color || '#444444')};
@@ -95,9 +95,9 @@ const PlaylistItem = ({ text, slug, setPlaylist }: PlaylistItemProps) => (
 );
 
 const SideBar = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
-  const playlists = useSelector((state: any) => state.audio.availablePlaylists);
+  const playlists = useAppSelector((state) => state.audio.availablePlaylists);
   useEffect(() => {
     dispatch(setCurrentPlaylist(playlists[0].slug));
   }, []);
@@ -108,8 +108,6 @@ const SideBar = () => {
 
   return (
     <SidebarLayout {...SidebarLayoutProps}>
-
-      {/* <Divider {...{ color: "black", sm: true }} /> */}
       {Object.entries(items).map(([key, value]) => <SidebarLink key={key} {...value} />)}
       <Divider {...{ sm: true }} />
       {playlists.map(({ name, slug }: any) => (

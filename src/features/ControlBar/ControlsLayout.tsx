@@ -28,7 +28,7 @@ const InputContainer = styled(Flex)`
   align-items: flex-start;
 `;
 
-const StyledInput: any = styled.input`
+const StyledInput = styled.input<{ percentage?: string }>`
   height: 5px;
   appearance: none;
   display: flex;
@@ -37,7 +37,7 @@ const StyledInput: any = styled.input`
   border-radius: 12px;
   transition: background 0.2s ease;
   cursor: pointer;
-  background: ${({ percentage }: any) => `-webkit-gradient(linear, 0% 0%, 100% 0%, color-stop(${percentage}, #fff), color-stop(${percentage}, #777))`};
+  background: ${({ percentage }) => `-webkit-gradient(linear, 0% 0%, 100% 0%, color-stop(${percentage}, #fff), color-stop(${percentage}, #777))`};
   ::-webkit-slider-thumb {
     -webkit-appearance: none; /* Override default look */
     appearance: none;
@@ -48,7 +48,7 @@ const StyledInput: any = styled.input`
     cursor: pointer; /* Cursor on hover */
   }
   :hover {
-    background: ${({ percentage }: any) => `-webkit-gradient(linear, 0% 0%, 100% 0%, color-stop(${percentage}, #1cb955), color-stop(${percentage}, #777))`};
+    background: ${({ percentage }) => `-webkit-gradient(linear, 0% 0%, 100% 0%, color-stop(${percentage}, #1cb955), color-stop(${percentage}, #777))`};
     ::-webkit-slider-thumb {
       width: 12px; /* Set a specific slider handle width */
       height: 12px; /* Slider handle height */
@@ -89,7 +89,7 @@ const Controls = () => {
               step="1"
               min="0"
               max={duration || `${duration}`}
-              onChange={(e: any) => onScrub(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => onScrub(e.target.value)}
               onMouseUp={onScrubEnd}
               onKeyUp={onScrubEnd}
               percentage={currentPercentage}

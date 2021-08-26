@@ -1,11 +1,23 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import useHover from 'hooks/useHover';
 import { Track } from './TableItem';
 
+interface TrackComponentProps {
+  info: any;
+  index: number;
+  handleClick: Function;
+  isSelected: boolean;
+  isPlaying: boolean;
+}
+
 export const TrackComponent = ({
-  info, handleClick, isSelected, isPlaying,
-}: any) => {
-  const [hoverRef, isHovered]: any = useHover();
+  info,
+  handleClick,
+  isSelected,
+  isPlaying,
+}: TrackComponentProps) => {
+  const hoverRef = useRef(null);
+  const isHovered = useHover(hoverRef);
   const now = new Date().toLocaleDateString('sv-SE');
   const {
     index, album, coverArt, trackName, artist, duration,

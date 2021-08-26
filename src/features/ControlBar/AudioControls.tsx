@@ -48,12 +48,19 @@ const ControlsContainer = styled(Container)`
   max-width: 8em;
 `;
 
+interface AudioControlsProps {
+  isPlaying: boolean;
+  onPlayPauseClick: Function;
+  onPrevClick: Function;
+  onNextClick: Function;
+}
+
 const AudioControls = ({
   isPlaying,
   onPlayPauseClick,
   onPrevClick,
   onNextClick,
-}: any) => (
+}: AudioControlsProps) => (
   <ControlsContainer>
     <SkipContainer>
       <Previous onClick={() => onPrevClick()} />
