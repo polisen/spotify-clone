@@ -7,7 +7,7 @@ import MainContent from './features/MainContent';
 
 function App() {
   const dispatch = useAppDispatch();
-  useKeypress(32, () => {
+  useKeypress('32', () => {
     dispatch(togglePlayState());
   });
   return (

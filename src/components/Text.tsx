@@ -8,7 +8,7 @@ const DefaultText = styled.p<{ inset?: boolean }>`
   margin: 0;
   margin-left: ${({ inset }) => (inset ? '.5em' : '0')};
 `;
-const Text = ({ children, inset }: { children: React.ReactNode; inset: boolean }) => (
+const Text = ({ children, inset = false }: { children: React.ReactNode, inset?: boolean }) => (
   <DefaultText inset={inset}>{children}</DefaultText>
 );
 

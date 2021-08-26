@@ -18,9 +18,7 @@ const PlaylistContentLayout = styled.div`
   background: linear-gradient(180deg, #101010 0%, #070707 50%);
 `;
 
-export interface PlaylistContentProps {}
-
-const PlaylistContent: React.SFC<PlaylistContentProps> = () => (
+const PlaylistContent = () => (
   <PlaylistContentLayout>
     <ContentLayout>
       <GreenButtonBar />
