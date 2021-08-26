@@ -1,10 +1,11 @@
 // test-utils.jsx
-import React from "react";
-import { render as rtlRender } from "@testing-library/react";
-import { configureStore } from "@reduxjs/toolkit";
-import { Provider } from "react-redux";
+import React from 'react';
+import { render as rtlRender } from '@testing-library/react';
+import { configureStore } from '@reduxjs/toolkit';
+import { Provider } from 'react-redux';
 // Import your own reducer
-import audioContextSlice from "slices/audioContextSlice";
+import PropTypes from 'prop-types';
+import audioContextSlice from '../slices/audioContextSlice';
 
 function render(
   ui,
@@ -15,15 +16,20 @@ function render(
       preloadedState,
     }),
     ...renderOptions
-  } = {}
+  } = {},
 ) {
   function Wrapper({ children }) {
     return <Provider {...{ store }}>{children}</Provider>;
   }
+
+  Wrapper.propTypes = {
+    children: PropTypes.node.isRequired,
+  };
+
   return rtlRender(ui, { wrapper: Wrapper, ...renderOptions });
 }
 
 // re-export everything
-export * from "@testing-library/react";
+export * from '@testing-library/react';
 // override render method
 export { render };

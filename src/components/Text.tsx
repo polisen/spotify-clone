@@ -1,14 +1,16 @@
 import styled from 'styled-components';
 import React from 'react';
 
-const DefaultText = styled.p`
+const DefaultText = styled.p<{ inset?: boolean }>`
   font-family: "DM Sans";
   font-weight: 500;
   color: white;
   margin: 0;
-  margin-left: ${({ inset }: any) => (inset ? '.5em' : '0')};
+  margin-left: ${({ inset }) => (inset ? '.5em' : '0')};
 `;
-const Text = ({ children }: any) => <DefaultText>{children}</DefaultText>;
+const Text = ({ children, inset }: { children: React.ReactNode; inset: boolean }) => (
+  <DefaultText inset={inset}>{children}</DefaultText>
+);
 
 Text.Dimmed = styled(DefaultText)`
   color: #b3b3b3;

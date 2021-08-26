@@ -6,7 +6,7 @@ export interface FileStructureState {
   };
 }
 
-interface CurrentlyPlaying {
+export interface CurrentlyPlaying {
   album?: string;
   artist?: string;
   coverArt?: string;

@@ -24,25 +24,25 @@ Instructions:
 
 ## Todo:
 
+- [x] Stronger Types
+- [ ] Improve redux reducer readability.
 - [ ] Storybook showcase
 - [ ] Figma file - cleanup and embed
-
 - [ ] Add more exhaustive unit tests
 - [ ] Add simple E2E Test
 - [ ] Responsive Design
 - [ ] Error boundaries
-- [ ] UI Issues
+- [ ] UI
+  - [ ] No Suspense
+  - [ ] No Lazyloading
   - [ ] Not sticky table header
   - [x] Sidebar resize issue
   - [ ] NaN:NaN time left on track
   - [ ] Persistent volume choice.
   - [ ] Playlist Header Image size responsiveness
-
-- [ ] UI Improvements
   - [ ] Playlist Header Image color decides accent gradient colors using average color of images.
   - [ ] Adding expanding album art
-
-- [ ] Functionality improvement
+- [ ] Features
   - [ ] Album View
   - [ ] Loop
   - [ ] Shuffle
